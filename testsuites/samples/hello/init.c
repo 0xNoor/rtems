@@ -41,7 +41,7 @@ static rtems_task Init(
 {
   rtems_print_printer_fprintf_putc(&rtems_test_printer);
   TEST_BEGIN();
-  printf( "Hello World\n" );
+  printf( "Hello World from noor\n" );
   TEST_END();
   rtems_test_exit( 0 );
 }
