@@ -1294,7 +1294,7 @@ static int jffs2_do_read_inode_internal(struct jffs2_sb_info *c,
 			dbg_readinode("symlink's target '%s' cached\n", f->target);
 		}
 
-		/* fall through... */
+		fallthrough;
 
 	case S_IFBLK:
 	case S_IFCHR:
@@ -1434,11 +1434,12 @@ void jffs2_do_clear_inode(struct jffs2_sb_info *c, struct jffs2_inode_info *f)
 	}
 
 	jffs2_kill_fragtree(&f->fragtree, deleted?c:NULL);
-
+#ifdef __rtems__
 	if (f->target) {
 		kfree(f->target);
 		f->target = NULL;
 	}
+#endif /* __rtems__ */
 
 	fds = f->dents;
 	while(fds) {
