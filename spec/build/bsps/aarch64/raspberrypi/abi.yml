@@ -8,7 +8,10 @@ copyrights:
 - Copyright (C) Copyright (C) 2022 Mohd Noor Aman
 default:
 - -mcpu=cortex-a72
-  -march=armv8-a 
+- -march=armv8-a 
+
+
+
 default-by-variant: []
 includes: []
 description: |
