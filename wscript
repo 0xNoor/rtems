@@ -112,7 +112,10 @@ class EnvWrapper(object):
 
 
 class Template(string.Template):
-    idpattern = "[_a-z][_a-z0-9:#]*"
+    idpattern = "[_A-Za-z][_A-Za-z0-9:#]*"
+
+
+_VAR_PATTERN = re.compile("\$\{?(" + Template.idpattern + ")\}?$")
 
 
 def _is_enabled_op_and(enabled, enabled_by):
@@ -249,17 +252,21 @@ class Item(object):
                     )
                 )
         if isinstance(value, list):
-            return [self.substitute(ctx, subvalue) for subvalue in value]
+            more = []
+            for item in value:
+                if isinstance(item, str):
+                    m = _VAR_PATTERN.match(item)
+                else:
+                    m = None
+                if m:
+                    more.extend(ctx.env[m.group(1).strip("{}")])
+                else:
+                    more.append(self.substitute(ctx, item))
+            return more
         return value
 
     def get(self, ctx, name):
         return self.substitute(ctx, self.data[name])
-
-    def get_values(self, ctx, name):
-        more = []
-        for value in self.data[name]:
-            more.extend(self.substitute(ctx, value).split())
-        return more
 
     def install_target(self, bld):
         install_path = self.data["install-path"]
@@ -512,9 +519,12 @@ class GroupItem(Item):
 
     def prepare_build(self, bld, bic):
         return BuildItemContext(
-            bic.includes + self.get_values(bld, "includes"),
+            bic.includes + self.substitute(bld, self.data["includes"]),
+            bic.cppflags + self.substitute(bld, self.data["cppflags"]),
+            bic.cflags + self.substitute(bld, self.data["cflags"]),
+            bic.cxxflags + self.substitute(bld, self.data["cxxflags"]),
             self.data["use-before"] + bic.use + self.data["use-after"],
-            bic.ldflags + self.get_values(bld, "ldflags"),
+            bic.ldflags + self.substitute(bld, self.data["ldflags"]),
             bic.objects,
         )
 
@@ -578,13 +588,24 @@ class ObjectsItem(Item):
     def __init__(self, uid, data):
         super(ObjectsItem, self).__init__(uid, data)
 
+    def prepare_build(self, bld, bic):
+        return BuildItemContext(
+            bic.includes + self.substitute(bld, self.data["includes"]),
+            bic.cppflags + self.substitute(bld, self.data["cppflags"]),
+            bic.cflags + self.substitute(bld, self.data["cflags"]),
+            bic.cxxflags + self.substitute(bld, self.data["cxxflags"]),
+            bic.use,
+            bic.ldflags,
+            bic.objects,
+        )
+
     def do_build(self, bld, bic):
         bld.objects(
-            asflags=self.substitute(bld, self.data["cppflags"]),
-            cflags=self.substitute(bld, self.data["cflags"]),
-            cppflags=self.substitute(bld, self.data["cppflags"]),
-            cxxflags=self.substitute(bld, self.data["cxxflags"]),
-            includes=bic.includes + self.substitute(bld, self.data["includes"]),
+            asflags=bic.cppflags,
+            cflags=bic.cflags,
+            cppflags=bic.cppflags,
+            cxxflags=bic.cxxflags,
+            includes=bic.includes,
             source=self.data["source"],
             target=self.uid,
         )
@@ -600,15 +621,23 @@ class BSPItem(Item):
 
     def prepare_build(self, bld, bic):
         return BuildItemContext(
-            bic.includes + bld.env.BSP_INCLUDES.split(), [], [], []
+            bic.includes
+            + bld.env.BSP_INCLUDES
+            + self.substitute(bld, self.data["includes"]),
+            self.substitute(bld, self.data["cppflags"]),
+            bld.env.BSP_CFLAGS + self.substitute(bld, self.data["cflags"]),
+            [],
+            [],
+            [],
+            [],
         )
 
     def do_build(self, bld, bic):
         bld(
-            cflags=self.substitute(bld, self.data["cflags"]),
-            cppflags=self.substitute(bld, self.data["cppflags"]),
+            cflags=bic.cflags,
+            cppflags=bic.cppflags,
             features="c cstlib",
-            includes=bic.includes + self.substitute(bld, self.data["includes"]),
+            includes=bic.includes,
             install_path="${BSP_LIBDIR}",
             source=self.data["source"],
             target="rtemsbsp",
@@ -622,15 +651,23 @@ class LibraryItem(Item):
         super(LibraryItem, self).__init__(uid, data)
 
     def prepare_build(self, bld, bic):
-        return BuildItemContext(bic.includes, [], [], [])
+        return BuildItemContext(
+            bic.includes + self.substitute(bld, self.data["includes"]),
+            bic.cppflags + self.substitute(bld, self.data["cppflags"]),
+            bic.cflags + self.substitute(bld, self.data["cflags"]),
+            bic.cxxflags + self.substitute(bld, self.data["cxxflags"]),
+            bic.use,
+            bic.ldflags,
+            [],
+        )
 
     def do_build(self, bld, bic):
         bld(
-            cflags=self.substitute(bld, self.data["cflags"]),
-            cppflags=self.substitute(bld, self.data["cppflags"]),
-            cxxflags=self.substitute(bld, self.data["cxxflags"]),
+            cflags=bic.cflags,
+            cppflags=bic.cppflags,
+            cxxflags=bic.cxxflags,
             features="c cxx cstlib",
-            includes=bic.includes + self.substitute(bld, self.data["includes"]),
+            includes=bic.includes,
             install_path=self.data["install-path"],
             source=self.data["source"],
             target=self.get(bld, "target"),
@@ -650,22 +687,32 @@ class TestProgramItem(Item):
         return [{"and": [{"not": self.exclude}, self.data["enabled-by"]]}]
 
     def prepare_build(self, bld, bic):
-        return BuildItemContext(bic.includes, bic.use, bic.ldflags, [])
+        return BuildItemContext(
+            bic.includes + self.substitute(bld, self.data["includes"]),
+            bic.cppflags
+            + bld.env[self.cppflags]
+            + self.substitute(bld, self.data["cppflags"]),
+            bic.cflags + self.substitute(bld, self.data["cflags"]),
+            bic.cxxflags + self.substitute(bld, self.data["cxxflags"]),
+            self.data["use-before"] + bic.use + self.data["use-after"],
+            bic.ldflags + self.substitute(bld, self.data["ldflags"]),
+            [],
+        )
 
     def do_build(self, bld, bic):
         bld(
-            cflags=self.substitute(bld, self.data["cflags"]),
-            cppflags=bld.env[self.cppflags] + self.substitute(bld, self.data["cppflags"]),
-            cxxflags=self.substitute(bld, self.data["cxxflags"]),
+            cflags=bic.cflags,
+            cppflags=bic.cppflags,
+            cxxflags=bic.cxxflags,
             features=self.data["features"],
-            includes=bic.includes + self.substitute(bld, self.data["includes"]),
+            includes=bic.includes,
             install_path=None,
-            ldflags=bic.ldflags + self.substitute(bld, self.data["ldflags"]),
+            ldflags=bic.ldflags,
             source=self.data["source"],
             start_files=True,
             stlib=self.data["stlib"],
             target=self.get(bld, "target"),
-            use=bic.objects + self.data["use-before"] + bic.use + self.data["use-after"],
+            use=bic.objects + bic.use,
         )
 
 
@@ -1105,8 +1152,13 @@ class ConfigItemContext(object):
 
 
 class BuildItemContext(object):
-    def __init__(self, includes, use, ldflags, objects):
+    def __init__(
+        self, includes, cppflags, cflags, cxxflags, use, ldflags, objects
+    ):
         self.includes = includes
+        self.cppflags = cppflags
+        self.cflags = cflags
+        self.cxxflags = cxxflags
         self.use = use
         self.ldflags = ldflags
         self.objects = objects
@@ -1555,7 +1607,9 @@ def build(bld):
         append_variant_builds(bld)
         return
     long_command_line_workaround(bld)
-    bic = BuildItemContext(bld.env.ARCH_INCLUDES.split(), [], [], [])
+    bic = BuildItemContext(
+        bld.env.ARCH_INCLUDES.split(), [], [], [], [], [], []
+    )
     bsps[bld.env.ARCH][bld.env.BSP_BASE].build(bld, bic)
     items[bld.env.TOPGROUP].build(bld, bic)
 

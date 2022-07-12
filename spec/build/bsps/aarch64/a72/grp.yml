@@ -1,7 +1,10 @@
 SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
 build-type: group
+cflags: []
 copyrights:
 - Copyright (C) 2020 On-Line Applications Research (OAR)
+cppflags: []
+cxxflags: []
 enabled-by: true
 includes: []
 install: []
@@ -29,6 +32,8 @@ links:
   uid: ../../obj
 - role: build-dependency
   uid: ../../objirq
+- role: build-dependency
+  uid: ../../dev/irq/objarmgicv3
 - role: build-dependency
   uid: ../../objmem
 - role: build-dependency

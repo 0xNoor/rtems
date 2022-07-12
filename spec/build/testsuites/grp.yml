@@ -1,12 +1,18 @@
 SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
 build-type: group
+cflags:
+- ${TEST_OPTIMIZATION_FLAGS}
 copyrights:
 - Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+cppflags: []
+cxxflags:
+- ${TEST_OPTIMIZATION_FLAGS}
 enabled-by: true
 includes:
 - ${BSP_INCLUDES}
 install: []
-ldflags: []
+ldflags:
+- ${COVERAGE_LINKER_FLAGS}
 links:
 - role: build-dependency
   uid: optada

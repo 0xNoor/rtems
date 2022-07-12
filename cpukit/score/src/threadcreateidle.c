@@ -40,6 +40,7 @@
 #endif
 
 #include <rtems/score/threadidledata.h>
+#include <rtems/score/cpuimpl.h>
 #include <rtems/score/threadimpl.h>
 #include <rtems/score/assert.h>
 #include <rtems/score/schedulerimpl.h>
@@ -111,10 +112,10 @@ static void _Thread_Create_idle_for_CPU( Per_CPU_Control *cpu )
 
 void _Thread_Create_idle( void )
 {
+#if defined(RTEMS_SMP)
   uint32_t cpu_max;
   uint32_t cpu_index;
 
-  _System_state_Set( SYSTEM_STATE_BEFORE_MULTITASKING );
   cpu_max = _SMP_Get_processor_maximum();
 
   for ( cpu_index = 0 ; cpu_index < cpu_max ; ++cpu_index ) {
@@ -124,4 +125,12 @@ void _Thread_Create_idle( void )
       _Thread_Create_idle_for_CPU( cpu );
     }
   }
+#else
+  _Thread_Create_idle_for_CPU( _Per_CPU_Get() );
+#endif
+
+  _CPU_Use_thread_local_storage(
+    &_Per_CPU_Get_executing( _Per_CPU_Get() )->Registers
+  );
+  _System_state_Set( SYSTEM_STATE_BEFORE_MULTITASKING );
 }
