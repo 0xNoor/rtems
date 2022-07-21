@@ -29,7 +29,7 @@ content: |
    */
 
   MEMORY {
-  RAM     (AIW) : ORIGIN = 0xfe000000, LENGTH = 1024M;
+  RAM      : ORIGIN = 0x80000, LENGTH = 1024M
   }
 
   REGION_ALIAS ("REGION_START",          RAM);

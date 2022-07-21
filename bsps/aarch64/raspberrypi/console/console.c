@@ -44,7 +44,7 @@
 
 arm_pl011_context a72_qemu_vpl011_context = {
   .base = RTEMS_TERMIOS_DEVICE_CONTEXT_INITIALIZER("PL011"),
-  .regs = (volatile pl011 *) BSP_A72_QEMU_VPL011_BASE,
+  .regs = (volatile pl011 *) BSP_RPI4_PL011_BASE,
   .initial_baud = 115200
 };
 
