@@ -13,7 +13,7 @@ install:
 - destination: ${BSP_INCLUDEDIR}
   source:
   - bsps/aarch64/raspberrypi/include/bsp.h
-#  - bsps/aarch64/include/dev/arm-gic-arch.h
+  - bsps/aarch64/include/dev/arm-gic-arch.h
   - bsps/aarch64/raspberrypi/include/tm27.h
   - cpukit/include/rtems/mallocinitone.h
   - bsps/include/bsp/bootcard.h
