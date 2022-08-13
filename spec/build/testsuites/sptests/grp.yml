@@ -395,6 +395,8 @@ links:
 - role: build-dependency
   uid: spsize
 - role: build-dependency
+  uid: spstdc17
+- role: build-dependency
   uid: spstdthreads01
 - role: build-dependency
   uid: spstkalloc
@@ -448,6 +450,8 @@ links:
   uid: sptls03
 - role: build-dependency
   uid: sptls04
+- role: build-dependency
+  uid: spunlimited01
 - role: build-dependency
   uid: spversion01
 - role: build-dependency

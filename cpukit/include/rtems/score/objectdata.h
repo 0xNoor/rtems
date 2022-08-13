@@ -449,7 +449,9 @@ Objects_Information name##_Information = { \
 #define OBJECTS_INFORMATION_DEFINE( name, api, cls, type, max, nl, ex ) \
 static Objects_Control * \
 name##_Local_table[ _Objects_Maximum_per_allocation( max ) ]; \
-static type name##_Objects[ _Objects_Maximum_per_allocation( max ) ]; \
+static RTEMS_SECTION( ".noinit.rtems.content.objects." #name ) \
+type \
+name##_Objects[ _Objects_Maximum_per_allocation( max ) ]; \
 Objects_Information name##_Information = { \
   _Objects_Build_id( api, cls, 1, _Objects_Maximum_per_allocation( max ) ), \
   name##_Local_table, \

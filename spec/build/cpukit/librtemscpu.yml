@@ -110,6 +110,7 @@ install:
   - cpukit/include/rtems/fsmount.h
   - cpukit/include/rtems/ide_part_table.h
   - cpukit/include/rtems/imfs.h
+  - cpukit/include/rtems/imfsimpl.h
   - cpukit/include/rtems/init.h
   - cpukit/include/rtems/inttypes.h
   - cpukit/include/rtems/io.h
@@ -190,6 +191,7 @@ install:
   - cpukit/include/rtems/confdefs/clock.h
   - cpukit/include/rtems/confdefs/console.h
   - cpukit/include/rtems/confdefs/extensions.h
+  - cpukit/include/rtems/confdefs/face.h
   - cpukit/include/rtems/confdefs/inittask.h
   - cpukit/include/rtems/confdefs/initthread.h
   - cpukit/include/rtems/confdefs/iodrivers.h
@@ -343,6 +345,7 @@ install:
   - cpukit/include/rtems/score/cpustdatomic.h
   - cpukit/include/rtems/score/exception.h
   - cpukit/include/rtems/score/freechain.h
+  - cpukit/include/rtems/score/gcov.h
   - cpukit/include/rtems/score/hash.h
   - cpukit/include/rtems/score/heap.h
   - cpukit/include/rtems/score/heapimpl.h
@@ -395,6 +398,7 @@ install:
   - cpukit/include/rtems/score/schedulersmp.h
   - cpukit/include/rtems/score/schedulersmpimpl.h
   - cpukit/include/rtems/score/schedulerstrongapa.h
+  - cpukit/include/rtems/score/scheduleruniimpl.h
   - cpukit/include/rtems/score/semaphoreimpl.h
   - cpukit/include/rtems/score/smp.h
   - cpukit/include/rtems/score/smpbarrier.h
@@ -1435,6 +1439,7 @@ source:
 - cpukit/score/src/memoryallocate.c
 - cpukit/score/src/memorydirtyfreeareas.c
 - cpukit/score/src/memoryfill.c
+- cpukit/score/src/memorynoinit.c
 - cpukit/score/src/memoryzerobeforeuse.c
 - cpukit/score/src/memoryzerofreeareas.c
 - cpukit/score/src/mutex.c
