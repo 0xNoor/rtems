@@ -1,10 +1,10 @@
 SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
 arch: aarch64
-bsp: xilinx_versal_lp64_vck190
+bsp: xilinx_versal_qemu
 build-type: bsp
 cflags: []
 copyrights:
-- Copyright (C) 2021 Gedare Bloom <gedare@rtems.org>
+- Copyright (C) 2021 Gedare Bloom
 cppflags: []
 enabled-by: true
 family: xilinx-versal
@@ -12,7 +12,7 @@ includes: []
 install: []
 links:
 - role: build-dependency
-  uid: grp_vck190
+  uid: grp_qemu
 - role: build-dependency
   uid: linkcmds_lp64
 source: []

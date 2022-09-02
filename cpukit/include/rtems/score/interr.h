@@ -175,7 +175,7 @@ typedef enum {
    * This enum value ensures that the enum type needs at least 32-bits for
    * architectures with short enums.
    */
-  RTEMS_FATAL_SOURCE_LAST = 0xffffffff
+  RTEMS_FATAL_SOURCE_LAST = 0x7fffffff
 } Internal_errors_Source;
 
 /**
