@@ -29,6 +29,7 @@ content: |
    */
 
   MEMORY {
+  RAM_MMU  : ORIGIN = 0x0, LENGTH = (0x1000 * ${AARCH64_MMU_TRANSLATION_TABLE_PAGES})
   RAM      : ORIGIN = 0x80000, LENGTH = 1024M
   }
 
@@ -59,6 +60,8 @@ content: |
   bsp_section_rwbarrier_align = DEFINED (bsp_section_rwbarrier_align) ? bsp_section_rwbarrier_align : 1M;
 
   bsp_vector_table_in_start_section = 1;
+  bsp_translation_table_base = ORIGIN (RAM_MMU);
+  bsp_translation_table_end = ORIGIN (RAM_MMU) + LENGTH (RAM_MMU);
 
   OUTPUT_FORMAT ("elf64-littleaarch64")
   OUTPUT_ARCH (aarch64)

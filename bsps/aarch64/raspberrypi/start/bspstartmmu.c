@@ -37,17 +37,19 @@
 #include <bsp.h>
 #include <bsp/start.h>
 #include <bsp/aarch64-mmu.h>
-#include <libcpu/mmu-vmsav8-64.h>
 #include <bsp/raspberrypi.h>
+#include <libcpu/mmu-vmsav8-64.h>
+
 
 BSP_START_DATA_SECTION static const aarch64_mmu_config_entry
 raspberrypi4_mmu_config_table[] = {
   AARCH64_MMU_DEFAULT_SECTIONS,
   {
-    .begin = RPI_PERIPHERAL_BASE,
-    .end =   RPI_PERIPHERAL_BASE + RPI_PERIPHERAL_SIZE,
+    .begin = 0x00000,
+    .end = 0x80000,
     .flags = AARCH64_MMU_DEVICE
-  };
+  }
+};
 /*
  * Make weak and let the user override.
  */
