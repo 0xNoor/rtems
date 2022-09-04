@@ -44,11 +44,22 @@
 BSP_START_DATA_SECTION static const aarch64_mmu_config_entry
 raspberrypi4_mmu_config_table[] = {
   AARCH64_MMU_DEFAULT_SECTIONS,
-  {
-    .begin = 0x00000,
-    .end = 0x80000,
+  { /*RPI peripheral address*/
+    .begin = RPI_PERIPHERAL_BASE,
+    .end = RPI_PERIPHERAL_BASE + RPI_PERIPHERAL_SIZE,
+    .flags = AARCH64_MMU_DEVICE
+  },
+  { /*RPI ARM local registers*/
+    .begin = BCM2711_LOCAL_REGS_BASE,
+    .end = BCM2711_LOCAL_REGS_BASE + BCM2711_LOCAL_REGS_SIZE,
+    .flags = AARCH64_MMU_DEVICE
+  },
+  { /*RPI ARM_C FIQ and IRQ registers*/
+    .begin = BCM2711_ARMC_REGS_BASE,
+    .end = BCM2711_ARMC_REGS_BASE + BCM2711_ARMC_REGS_SIZE,
     .flags = AARCH64_MMU_DEVICE
   }
+
 };
 /*
  * Make weak and let the user override.
