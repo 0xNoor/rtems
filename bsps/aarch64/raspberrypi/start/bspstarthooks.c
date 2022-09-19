@@ -37,6 +37,7 @@
 #include <bsp.h>
 #include <bsp/irq-generic.h>
 #include <bsp/start.h>
+#include <rtems/score/cpu.h>
 
 BSP_START_TEXT_SECTION void bsp_start_hook_0(void)
 {

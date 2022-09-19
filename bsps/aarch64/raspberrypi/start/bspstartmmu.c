@@ -45,20 +45,58 @@ BSP_START_DATA_SECTION static const aarch64_mmu_config_entry
 raspberrypi4_mmu_config_table[] = {
   AARCH64_MMU_DEFAULT_SECTIONS,
   { /*RPI peripheral address*/
-    .begin = RPI_PERIPHERAL_BASE,
-    .end = RPI_PERIPHERAL_BASE + RPI_PERIPHERAL_SIZE,
+    .begin = (unsigned)RPI_PERIPHERAL_BASE,
+    .end = (unsigned)RPI_PERIPHERAL_BASE + (unsigned)RPI_PERIPHERAL_SIZE,
     .flags = AARCH64_MMU_DEVICE
   },
+
   { /*RPI ARM local registers*/
-    .begin = BCM2711_LOCAL_REGS_BASE,
-    .end = BCM2711_LOCAL_REGS_BASE + BCM2711_LOCAL_REGS_SIZE,
+    .begin = (unsigned)BCM2711_LOCAL_REGS_BASE,
+    .end = (unsigned)BCM2711_LOCAL_REGS_BASE + (unsigned)BCM2711_LOCAL_REGS_SIZE,
     .flags = AARCH64_MMU_DEVICE
   },
+
   { /*RPI ARM_C FIQ and IRQ registers*/
-    .begin = BCM2711_ARMC_REGS_BASE,
-    .end = BCM2711_ARMC_REGS_BASE + BCM2711_ARMC_REGS_SIZE,
+    .begin = (unsigned)BCM2711_ARMC_REGS_BASE,
+    .end = (unsigned)BCM2711_ARMC_REGS_BASE + (unsigned)BCM2711_ARMC_REGS_SIZE,
     .flags = AARCH64_MMU_DEVICE
-  }
+  },
+
+  { /*RPI Watchdog Timer*/
+    .begin = (unsigned)BCM2711_PM_BASE,
+    .end = (unsigned)BCM2711_PM_BASE + 0x1000U,
+    .flags = AARCH64_MMU_DEVICE
+  },
+
+  { /*RPI GPU System Timer*/
+    .begin = (unsigned)BCM2711_GPU_TIMER_BASE,
+    .end = (unsigned)BCM2711_GPU_TIMER_BASE + 0x200000U,
+    .flags = AARCH64_MMU_DEVICE
+  },
+
+  { /*RPI ARM System Timer*/
+    .begin = (unsigned)BCM2711_TIMER_BASE,
+    .end = (unsigned)BCM2711_TIMER_BASE + 0x200000U,
+    .flags = AARCH64_MMU_DEVICE
+  },
+
+  { /*RPI GIC Timer*/
+    .begin = 0xFF800000U,
+    .end = 0xFFA00000U,
+    .flags = AARCH64_MMU_DEVICE
+  },
+
+  { /*RPI MMC */
+    .begin = 0xFE340000U,
+    .end = 0xFE340000U + 0x200000U,
+    .flags = AARCH64_MMU_DEVICE
+  },
+
+  { /*RPI UART*/
+    .begin = 0xFE200000U,
+    .end = 0xFE200000U,
+    .flags = AARCH64_MMU_DEVICE
+  },
 
 };
 /*

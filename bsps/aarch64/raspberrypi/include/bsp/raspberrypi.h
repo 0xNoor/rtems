@@ -42,7 +42,7 @@
  * @{
  */
 
-#define BCM2711_REG(x)           (*(volatile uint32_t *)(x))
+#define BCM2711_REG(x)           (*(volatile uint64_t *)(x))
 #define BCM2711_BIT(n)           (1 << (n))
 
 /** @} */
@@ -290,7 +290,7 @@
  */
 
 #define BCM2711_LOCAL_REGS_BASE		  		     	0x4C0000000
-#define BCM2711_LOCAL_REGS_SIZE               
+#define BCM2711_LOCAL_REGS_SIZE               0x100
 
 #define BCM2711_LOCAL_ARM_CONTROL             (BCM2711_LOCAL_REGS_BASE + 0x00)
 #define BCM2711_LOCAL_CORE_IRQ_CONTROL        (BCM2711_LOCAL_REGS_BASE + 0x0c)
