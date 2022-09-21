@@ -29,6 +29,7 @@ source:
 - bsps/aarch64/shared/cache/cache.c
 - bsps/shared/dev/clock/arm-generic-timer.c
 - bsps/shared/dev/irq/arm-gicv2.c
+- bsps/shared/dev/irq/arm-gicv2-get-attributes.c
 - bsps/shared/dev/serial/console-termios-init.c
 - bsps/shared/dev/serial/console-termios.c
 - bsps/shared/dev/serial/arm-pl011.c
@@ -69,6 +70,8 @@ links:
   uid: linkercmds
 - role: build-dependency
   uid: ../../obj
+- role: build-dependency
+  uid: ../../objirq
   
 type: build
 
