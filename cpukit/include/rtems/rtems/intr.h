@@ -3,6 +3,8 @@
 /**
  * @file
  *
+ * @ingroup RTEMSImplClassic
+ *
  * @brief This header file defines the Interrupt Manager API.
  */
 
@@ -65,6 +67,7 @@
 #include <rtems/score/basedefs.h>
 #include <rtems/score/chain.h>
 #include <rtems/score/cpu.h>
+#include <rtems/score/cpuopts.h>
 #include <rtems/score/isr.h>
 #include <rtems/score/isrlevel.h>
 #include <rtems/score/isrlock.h>

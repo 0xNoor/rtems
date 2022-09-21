@@ -186,12 +186,12 @@ static inline void riscv_interrupt_enable( uint32_t level )
       riscv_interrupt_disable(); \
     } while(0)
 
-RTEMS_INLINE_ROUTINE bool _CPU_ISR_Is_enabled( unsigned long level )
+static inline bool _CPU_ISR_Is_enabled( unsigned long level )
 {
   return ( level & RISCV_MSTATUS_MIE ) != 0;
 }
 
-RTEMS_INLINE_ROUTINE void _CPU_ISR_Set_level( uint32_t level )
+static inline void _CPU_ISR_Set_level( uint32_t level )
 {
   if ( ( level & CPU_MODES_INTERRUPT_MASK) == 0 ) {
     __asm__ volatile (
@@ -459,14 +459,6 @@ extern volatile uint32_t * const _RISCV_Counter;
 
 CPU_Counter_ticks _CPU_Counter_read( void );
 
-static inline CPU_Counter_ticks _CPU_Counter_difference(
-  CPU_Counter_ticks second,
-  CPU_Counter_ticks first
-)
-{
-  return second - first;
-}
-
 #ifdef RTEMS_SMP
 
 uint32_t _CPU_SMP_Initialize( void );
@@ -489,7 +481,7 @@ static inline uint32_t _CPU_SMP_Get_current_processor( void )
     "=&r" ( mhartid )
   );
 
-  return (uint32_t) mhartid;
+  return (uint32_t) mhartid - RISCV_BOOT_HARTID;
 }
 
 void _CPU_SMP_Send_interrupt( uint32_t target_processor_index );

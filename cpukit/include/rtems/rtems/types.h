@@ -3,6 +3,8 @@
 /**
  * @file
  *
+ * @ingroup RTEMSImplClassic
+ *
  * @brief This header file provides types used by the Classic API.
  */
 
@@ -59,6 +61,7 @@
 #include <sys/_timeval.h>
 #include <sys/cpuset.h>
 #include <rtems/rtems/modes.h>
+#include <rtems/score/cpuopts.h>
 #include <rtems/score/mppkt.h>
 #include <rtems/score/object.h>
 #include <rtems/score/watchdogticks.h>

@@ -456,7 +456,7 @@ extern Context_Control_fp _CPU_Null_fp_context;
 #define _CPU_ISR_Flash( _isr_cookie ) \
   lm32_flash_interrupts( _isr_cookie );
 
-RTEMS_INLINE_ROUTINE bool _CPU_ISR_Is_enabled( uint32_t level )
+static inline bool _CPU_ISR_Is_enabled( uint32_t level )
 {
   return ( level & 0x0001 ) != 0;
 }
@@ -612,7 +612,7 @@ void _CPU_Initialize(void);
 
 typedef void ( *CPU_ISR_raw_handler )( void );
 
-RTEMS_INLINE_ROUTINE void _CPU_ISR_install_raw_handler(
+static inline void _CPU_ISR_install_raw_handler(
   uint32_t             vector,
   CPU_ISR_raw_handler  new_handler,
   CPU_ISR_raw_handler *old_handler
@@ -744,14 +744,6 @@ typedef uint32_t CPU_Counter_ticks;
 uint32_t _CPU_Counter_frequency( void );
 
 CPU_Counter_ticks _CPU_Counter_read( void );
-
-static inline CPU_Counter_ticks _CPU_Counter_difference(
-  CPU_Counter_ticks second,
-  CPU_Counter_ticks first
-)
-{
-  return second - first;
-}
 
 /** Type that can store a 32-bit integer or a pointer. */
 typedef uintptr_t CPU_Uint32ptr;

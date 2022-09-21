@@ -325,7 +325,7 @@ typedef struct {
   uint32_t priority[RISCV_PLIC_MAX_INTERRUPTS];
   uint32_t pending[1024];
   uint32_t enable[16320][32];
-  RISCV_PLIC_hart_regs harts[CPU_MAXIMUM_PROCESSORS];
+  RISCV_PLIC_hart_regs harts[CPU_MAXIMUM_PROCESSORS + RISCV_BOOT_HARTID];
 } RISCV_PLIC_regs;
 
 typedef struct {
@@ -420,17 +420,17 @@ void _CPU_Context_volatile_clobber( uintptr_t pattern );
 
 void _CPU_Context_validate( uintptr_t pattern );
 
-RTEMS_INLINE_ROUTINE void _CPU_Instruction_illegal( void )
+static inline void _CPU_Instruction_illegal( void )
 {
   __asm__ volatile ( "unimp" );
 }
 
-RTEMS_INLINE_ROUTINE void _CPU_Instruction_no_operation( void )
+static inline void _CPU_Instruction_no_operation( void )
 {
   __asm__ volatile ( "nop" );
 }
 
-RTEMS_INLINE_ROUTINE void _CPU_Use_thread_local_storage(
+static inline void _CPU_Use_thread_local_storage(
   const Context_Control *context
 )
 {

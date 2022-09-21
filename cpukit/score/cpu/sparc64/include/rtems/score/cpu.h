@@ -697,7 +697,7 @@ extern const CPU_Trap_table_entry _CPU_Trap_slot_template;
 #define _CPU_ISR_Flash( _level ) \
    sparc_flash_interrupts( _level )
 
-RTEMS_INLINE_ROUTINE bool _CPU_ISR_Is_enabled( uint32_t level )
+static inline bool _CPU_ISR_Is_enabled( uint32_t level )
 {
   return ( level & SPARC_PSTATE_IE_MASK ) != 0;
 }
@@ -933,14 +933,6 @@ typedef uint32_t CPU_Counter_ticks;
 uint32_t _CPU_Counter_frequency( void );
 
 CPU_Counter_ticks _CPU_Counter_read( void );
-
-static inline CPU_Counter_ticks _CPU_Counter_difference(
-  CPU_Counter_ticks second,
-  CPU_Counter_ticks first
-)
-{
-  return second - first;
-}
 
 /** Type that can store a 32-bit integer or a pointer. */
 typedef uintptr_t CPU_Uint32ptr;

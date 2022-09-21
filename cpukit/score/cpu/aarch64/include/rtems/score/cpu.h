@@ -260,7 +260,7 @@ static inline void AArch64_interrupt_flash( uint64_t isr_cookie )
 #define _CPU_ISR_Flash( _isr_cookie ) \
   AArch64_interrupt_flash( _isr_cookie )
 
-RTEMS_INLINE_ROUTINE bool _CPU_ISR_Is_enabled( uint64_t isr_cookie )
+static inline bool _CPU_ISR_Is_enabled( uint64_t isr_cookie )
 {
   return ( isr_cookie & AARCH64_PSTATE_I ) == 0;
 }
@@ -383,14 +383,6 @@ typedef uint32_t CPU_Counter_ticks;
 uint32_t _CPU_Counter_frequency( void );
 
 CPU_Counter_ticks _CPU_Counter_read( void );
-
-static inline CPU_Counter_ticks _CPU_Counter_difference(
-  CPU_Counter_ticks second,
-  CPU_Counter_ticks first
-)
-{
-  return second - first;
-}
 
 void *_CPU_Thread_Idle_body( uintptr_t ignored );
 

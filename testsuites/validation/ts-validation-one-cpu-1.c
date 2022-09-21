@@ -52,6 +52,8 @@
 #include "config.h"
 #endif
 
+#include "ts-config.h"
+
 #include <rtems/test.h>
 
 /**
@@ -74,6 +76,9 @@ const char rtems_test_name[] = "ValidationOneCpu1";
 #define CONFIGURE_APPLICATION_DOES_NOT_NEED_CLOCK_DRIVER
 
 #define CONFIGURE_MAXIMUM_PROCESSORS 1
+
+#define CONFIGURE_SCHEDULER_TABLE_ENTRIES \
+  RTEMS_SCHEDULER_TABLE_PRIORITY( a, TEST_SCHEDULER_A_NAME )
 
 #include "ts-default.h"
 

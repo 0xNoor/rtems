@@ -384,7 +384,7 @@ extern void*                     _VBR;
 #define _CPU_ISR_Flash( _level ) \
   m68k_flash_interrupts( _level )
 
-RTEMS_INLINE_ROUTINE bool _CPU_ISR_Is_enabled( uint32_t level )
+static inline bool _CPU_ISR_Is_enabled( uint32_t level )
 {
   return ( level & 0x0700 ) == 0;
 }
@@ -620,14 +620,6 @@ typedef uint32_t CPU_Counter_ticks;
 uint32_t _CPU_Counter_frequency( void );
 
 CPU_Counter_ticks _CPU_Counter_read( void );
-
-static inline CPU_Counter_ticks _CPU_Counter_difference(
-  CPU_Counter_ticks second,
-  CPU_Counter_ticks first
-)
-{
-  return second - first;
-}
 
 #if (M68K_HAS_FPSP_PACKAGE == 1)
 /*
