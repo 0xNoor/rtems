@@ -8,6 +8,7 @@
 
 /**
  * Copyright (c) 2013 Alan Cudmore
+ * Copyright (c) 2022 Mohd Noor Aman
  *
  *  The license and distribution terms for this file may be
  *  found in the file LICENSE in this distribution or at

@@ -10,8 +10,6 @@ default:
 - -mcpu=cortex-a72
 - -march=armv8-a 
 
-
-
 default-by-variant: []
 includes: []
 description: |

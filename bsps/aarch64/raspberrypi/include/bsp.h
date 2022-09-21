@@ -3,14 +3,14 @@
 /**
  * @file
  *
- * @ingroup RTEMSBSPsAArch64A72
+ * @ingroup RTEMSBSPsAArch64Raspberrypi4
  *
  * @brief Core BSP definitions
  */
 
 /*
- * Copyright (C) 2020 On-Line Applications Research Corporation (OAR)
- * Written by Kinsey Moore <kinsey.moore@oarcorp.com>
+ * Copyright (C) 2022 Mohd Noor Aman
+ *
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -34,8 +34,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef LIBBSP_AARCH64_A72_QEMU_BSP_H
-#define LIBBSP_AARCH64_A72_QEMU_BSP_H
+#ifndef LIBBSP_AARCH64_RASPBERRYPI_4_BSP_H
+#define LIBBSP_AARCH64_RASPBERRYPI_4_BSP_H
 
 /**
  * @addtogroup RTEMSBSPsAArch64
@@ -56,8 +56,8 @@
 extern "C" {
 #endif /* __cplusplus */
 
-#define BSP_ARM_GIC_CPUIF_BASE 0xff842000
-#define BSP_ARM_GIC_DIST_BASE 0xff841000
+#define BSP_ARM_GIC_CPUIF_BASE 0xFF842000
+#define BSP_ARM_GIC_DIST_BASE 0xFF841000
 
 #define BSP_RPI4_PL011_BASE 0xFE201000
 #define BSP_RPI4_PL011_LENGTH 0x200
@@ -70,4 +70,4 @@ extern "C" {
 
 /** @} */
 
-#endif /* LIBBSP_AARCH64_A72_QEMU_BSP_H */
+#endif /* LIBBSP_AARCH64_RASPBERRYPI_4_BSP_H */

@@ -1,7 +1,7 @@
 /**
  * @file
  *
- * @ingroup raspberrypi_4_reg
+ * @ingroup raspberrypi_4_regs
  *
  * @brief Register definitions.
  */

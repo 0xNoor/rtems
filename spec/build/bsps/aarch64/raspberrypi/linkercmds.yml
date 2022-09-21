@@ -4,7 +4,7 @@ content: |
   /* SPDX-License-Identifier: BSD-2-Clause */
 
   /*
-   * Copyright (C) 2021 Gedare Bloom <gedare@rtems.org> 
+   * Copyright (C) 2022 Mohd Noor Aman 
    *
    * Redistribution and use in source and binary forms, with or without
    * modification, are permitted provided that the following conditions
@@ -68,7 +68,7 @@ content: |
 
   INCLUDE linkcmds.base
 copyrights:
-- Copyright (C) 2021 Gedare Bloom <gedare@rtems.org> 
+- Copyright (C) 2022 Mohd Noor Aman
 enabled-by: true
 install-path: ${BSP_LIBDIR}
 links: []

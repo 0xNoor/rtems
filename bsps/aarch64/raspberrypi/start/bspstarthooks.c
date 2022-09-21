@@ -3,14 +3,14 @@
 /**
  * @file
  *
- * @ingroup RTEMSBSPsAArch64A53
+ * @ingroup RTEMSBSPsAArch64Raspberrypi4
  *
  * @brief BSP Startup Hooks
  */
 
 /*
- * Copyright (C) 2020 On-Line Applications Research Corporation (OAR)
- * Written by Kinsey Moore <kinsey.moore@oarcorp.com>
+ * Copyright (C) 2022 Mohd Noor Aman
+ *
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -48,6 +48,6 @@ BSP_START_TEXT_SECTION void bsp_start_hook_1(void)
 {
   AArch64_start_set_vector_base();
   bsp_start_copy_sections();
-  raspberrypi4_setup_mmu_and_cache();
+  raspberrypi_4_setup_mmu_and_cache();
   bsp_start_clear_bss();
 }

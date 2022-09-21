@@ -3,14 +3,14 @@
 /**
  * @file
  *
- * @ingroup RTEMSBSPsAArch64A72
+ * @ingroup RTEMSBSPsAArch64Raspberrypi4
  *
  * @brief Console Configuration
  */
 
 /*
- * Copyright (C) 2020 On-Line Applications Research Corporation (OAR)
- * Written by Kinsey Moore <kinsey.moore@oarcorp.com>
+ * Copyright (C) 2022 Mohd Noor Aman
+ *
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -42,7 +42,7 @@
 
 #include <bspopts.h>
 
-arm_pl011_context a72_qemu_vpl011_context = {
+arm_pl011_context raspberrypi_4_context = {
   .base = RTEMS_TERMIOS_DEVICE_CONTEXT_INITIALIZER("PL011"),
   .regs = (volatile pl011 *) BSP_RPI4_PL011_BASE,
   .initial_baud = 115200
@@ -53,7 +53,7 @@ const console_device console_device_table[] = {
     .device_file = "/dev/ttyS0",
     .probe = console_device_probe_default,
     .handler = &arm_pl011_fns,
-    .context = &a72_qemu_vpl011_context.base
+    .context = &raspberrypi_4_context.base
   }
 };
 
@@ -61,7 +61,7 @@ const size_t console_device_count = RTEMS_ARRAY_SIZE(console_device_table);
 
 static void output_char( char c )
 {
-  arm_pl011_write_polled(&a72_qemu_vpl011_context.base, c);
+  arm_pl011_write_polled(&raspberrypi_4_context.base, c);
 }
 
 BSP_output_char_function_type BSP_output_char = output_char;

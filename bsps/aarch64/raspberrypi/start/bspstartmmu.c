@@ -3,14 +3,14 @@
 /**
  * @file
  *
- * @ingroup RTEMSBSPsAArch64RaspberryPi4
+ * @ingroup RTEMSBSPsAArch64Raspberrypi4
  *
  * @brief This source file contains the default MMU tables and setup.
  */
 
 /*
- * Copyright (C) 2021 On-Line Applications Research Corporation (OAR)
- * Written by Kinsey Moore <kinsey.moore@oarcorp.com>
+ * Copyright (C) 2022 Mohd Noor Aman
+ *
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -42,7 +42,7 @@
 
 
 BSP_START_DATA_SECTION static const aarch64_mmu_config_entry
-raspberrypi4_mmu_config_table[] = {
+raspberrypi_4_mmu_config_table[] = {
   AARCH64_MMU_DEFAULT_SECTIONS,
   { /*RPI peripheral address*/
     .begin = (unsigned)RPI_PERIPHERAL_BASE,
@@ -103,16 +103,16 @@ raspberrypi4_mmu_config_table[] = {
  * Make weak and let the user override.
  */
 BSP_START_TEXT_SECTION void
-raspberrypi4_setup_mmu_and_cache( void ) __attribute__ ((weak));
+raspberrypi_4_setup_mmu_and_cache( void ) __attribute__ ((weak));
 
 BSP_START_TEXT_SECTION void
-raspberrypi4_setup_mmu_and_cache( void )
+raspberrypi_4_setup_mmu_and_cache( void )
 {
   aarch64_mmu_setup();
 
   aarch64_mmu_setup_translation_table(
-    &raspberrypi4_mmu_config_table[ 0 ],
-    RTEMS_ARRAY_SIZE( raspberrypi4_mmu_config_table )
+    &raspberrypi_4_mmu_config_table[ 0 ],
+    RTEMS_ARRAY_SIZE( raspberrypi_4_mmu_config_table )
   );
 
   aarch64_mmu_enable();
