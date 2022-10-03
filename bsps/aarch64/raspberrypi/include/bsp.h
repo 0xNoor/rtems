@@ -52,6 +52,9 @@
 
 #include <rtems.h>
 
+/*Raspberry pi MMU initialization */
+BSP_START_TEXT_SECTION void raspberrypi_4_setup_mmu_and_cache(void);
+
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */

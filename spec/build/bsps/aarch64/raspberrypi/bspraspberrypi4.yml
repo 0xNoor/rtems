@@ -47,6 +47,8 @@ source:
 
 links:
 - role: build-dependency
+  uid: abi
+- role: build-dependency
   uid: ../grp
 - role: build-dependency
   uid: ../start
@@ -56,8 +58,6 @@ links:
   uid: ../optgtusevirt
 - role: build-dependency
   uid: ../optgtuseps
-- role: build-dependency
-  uid: abi
 - role: build-dependency
   uid: ../../optcachedata
 - role: build-dependency
