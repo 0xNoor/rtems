@@ -44,7 +44,6 @@
 BSP_START_DATA_SECTION static const aarch64_mmu_config_entry
 raspberrypi_4_mmu_config_table[] = {
   AARCH64_MMU_DEFAULT_SECTIONS,
-  
   { /* RPI peripheral address */
     .begin = (unsigned)RPI_PERIPHERAL_BASE,
     .end = (unsigned)RPI_PERIPHERAL_BASE + (unsigned)RPI_PERIPHERAL_SIZE,

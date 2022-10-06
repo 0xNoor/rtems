@@ -29,7 +29,9 @@
 
 	/* Global symbols */
 	.globl	_start
+	.type	_start, %function
 	.globl	bsp_start_hook_0_done
+	.type	bsp_start_hook_0_done, %function
 	.globl	bsp_start_vector_table_begin
 	.globl	bsp_start_vector_table_end
 	.globl	bsp_start_vector_table_size
@@ -285,6 +287,7 @@ _start:
 	sub	r3, r3, r1
 
 #ifdef BSP_START_NEEDS_REGISTER_INITIALIZATION
+	/* These are banked FIQ mode registers */
 	mov	r8, #0
 	mov	r9, #0
 	mov	r10, #0

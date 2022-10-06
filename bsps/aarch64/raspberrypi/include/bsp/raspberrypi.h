@@ -461,7 +461,6 @@
 
 #define BCM2711_ARMC_SWIRQ_SET                 (BCM2711_ARMC_REGS_BASE + 0x1F0)
 #define BCM2711_ARMC_SWIRQ_CLEAR               (BCM2711_ARMC_REGS_BASE + 0x1F4)
-             
 
 
 

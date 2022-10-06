@@ -3,14 +3,14 @@
 /**
  * @file
  *
- * @ingroup RTEMSBSPsAArch64Raspberrypi4
+ * @ingroup RTEMSImplClassicClock
  *
- * @brief BSP Startup
+ * @brief This source file contains the implementation of
+ *   rtems_clock_get_ticks_since_boot().
  */
 
 /*
- * Copyright (C) 2022 Mohd Noor Aman
- *
+ * Copyright (C) 2022 embedded brains GmbH (http://www.embedded-brains.de)
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -34,16 +34,20 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <bsp.h>
-#include <bsp/bootcard.h>
-#include <bsp/irq-generic.h>
-#include <bsp/linker-symbols.h>
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
-void bsp_start( void )
+#include <rtems/rtems/clock.h>
+
+static rtems_interval _RTEMS_Clock_get_ticks_since_boot( void )
 {
-  bsp_interrupt_initialize();
-  rtems_cache_coherent_add_area(
-    bsp_section_nocacheheap_begin,
-    (uintptr_t) bsp_section_nocacheheap_size
-  );
+  return rtems_clock_get_ticks_since_boot();
+}
+
+#undef rtems_clock_get_ticks_since_boot
+
+rtems_interval rtems_clock_get_ticks_since_boot( void )
+{
+  return _RTEMS_Clock_get_ticks_since_boot();
 }

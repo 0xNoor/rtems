@@ -182,7 +182,7 @@ rtems_fdt_init_index (rtems_fdt_handle* fdt, rtems_fdt_blob* blob)
   }
 
   names = calloc(1, total_name_memory);
-  if (!entries)
+  if (!names)
   {
     free(entries);
     return -RTEMS_FDT_ERR_NO_MEMORY;
@@ -700,13 +700,13 @@ rtems_fdt_unload (rtems_fdt_handle* handle)
 
   rtems_chain_extract_unprotected (&handle->blob->node);
 
+  rtems_fdt_release_index(&handle->blob->index);
+
   free (handle->blob);
 
   handle->blob = NULL;
 
   rtems_fdt_unlock (fdt);
-
-  rtems_fdt_release_index(&handle->blob->index);
 
   return 0;
 }
