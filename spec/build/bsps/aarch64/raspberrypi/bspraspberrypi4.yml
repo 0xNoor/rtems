@@ -75,7 +75,5 @@ links:
   uid: ../../obj
 - role: build-dependency
   uid: ../../objirq
-  
+
 type: build
-
-

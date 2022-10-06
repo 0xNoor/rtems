@@ -25,8 +25,11 @@ install:
   - cpukit/include/mqueue.h
   - cpukit/include/poll.h
   - cpukit/include/rtems.h
+  - cpukit/include/sha224.h
   - cpukit/include/sha256.h
+  - cpukit/include/sha384.h
   - cpukit/include/sha512.h
+  - cpukit/include/sha512t.h
   - cpukit/include/xz.h
 - destination: ${BSP_INCLUDEDIR}/arpa
   source:
@@ -1181,6 +1184,7 @@ source:
 - cpukit/rtems/src/barrierrelease.c
 - cpukit/rtems/src/barrierwait.c
 - cpukit/rtems/src/clockgetsecondssinceepoch.c
+- cpukit/rtems/src/clockgettickssinceboot.c
 - cpukit/rtems/src/clockgettickspersecond.c
 - cpukit/rtems/src/clockgettod.c
 - cpukit/rtems/src/clockgettodtimeval.c
