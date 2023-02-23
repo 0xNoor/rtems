@@ -60,7 +60,7 @@
 static fe310_uart_context fe310_uart_instance;
 #endif
 
-#if RISCV_ENABLE_HTIF_SUPPORT != 0
+#ifdef RISCV_ENABLE_HTIF_SUPPORT
 static htif_console_context htif_console_instance;
 #endif
 
@@ -139,10 +139,6 @@ static void riscv_console_set_reg_32(uintptr_t addr, uint8_t i, uint8_t val)
 }
 #endif
 
-#define RISCV_CONSOLE_IS_COMPATIBLE(actual, actual_len, desired) \
-  (actual_len == sizeof(desired) \
-     && memcmp(actual, desired, sizeof(desired) - 1) == 0)
-
 static void riscv_console_probe(void)
 {
   const void *fdt;
@@ -169,8 +165,9 @@ static void riscv_console_probe(void)
       compat_len = 0;
     }
 
-#if RISCV_ENABLE_HTIF_SUPPORT != 0
-    if (RISCV_CONSOLE_IS_COMPATIBLE(compat, compat_len, "ucb,htif0")) {
+#ifdef RISCV_ENABLE_HTIF_SUPPORT
+    /* Search for HTIF (eg. on Spike) and use it if found */
+    if (fdt_stringlist_contains(compat, compat_len, "ucb,htif0")) {
       htif_console_context_init(&htif_console_instance.base, node);
 
       riscv_console.context = &htif_console_instance.base;
@@ -181,8 +178,8 @@ static void riscv_console_probe(void)
 
 #if RISCV_CONSOLE_MAX_NS16550_DEVICES > 0
     if (
-      (RISCV_CONSOLE_IS_COMPATIBLE(compat, compat_len, "ns16550a")
-          || RISCV_CONSOLE_IS_COMPATIBLE(compat, compat_len, "ns16750"))
+        (fdt_stringlist_contains(compat, compat_len, "ns16550a")
+        || fdt_stringlist_contains(compat, compat_len, "ns16750"))
         && ns16550_devices < RISCV_CONSOLE_MAX_NS16550_DEVICES
     ) {
       ns16550_context *ctx;
@@ -203,7 +200,7 @@ static void riscv_console_probe(void)
         ctx->set_reg = riscv_console_set_reg_8;
       }
 
-      if (RISCV_CONSOLE_IS_COMPATIBLE(compat, compat_len, "ns16750")) {
+      if (fdt_stringlist_contains(compat, compat_len, "ns16750")) {
         ctx->has_precision_clock_synthesizer = true;
       }
 
@@ -243,7 +240,7 @@ static void riscv_console_probe(void)
 #endif
 
 #if RISCV_ENABLE_FRDME310ARTY_SUPPORT != 0
-    if (RISCV_CONSOLE_IS_COMPATIBLE(compat, compat_len, "sifive,uart0")) {
+    if (fdt_stringlist_contains(compat, compat_len, "sifive,uart0")) {
       fe310_uart_context *ctx;
 
       ctx = &fe310_uart_instance;
@@ -284,7 +281,7 @@ rtems_status_code console_initialize(
   void *arg
 )
 {
-#if RISCV_ENABLE_HTIF_SUPPORT != 0
+#ifdef RISCV_ENABLE_HTIF_SUPPORT
   rtems_termios_device_context *base;
   char htif_path[] = "/dev/ttyShtif";
 #endif
@@ -300,7 +297,7 @@ rtems_status_code console_initialize(
 
   rtems_termios_initialize();
 
-#if RISCV_ENABLE_HTIF_SUPPORT != 0
+#ifdef RISCV_ENABLE_HTIF_SUPPORT
   base = &htif_console_instance.base;
   rtems_termios_device_install(htif_path, &htif_console_handler, NULL, base);
 

@@ -5,14 +5,14 @@ actions:
 build-type: option
 copyrights:
 - Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
-default: false
-default-by-variant:
-- value: true
-  variants:
-  - powerpc/pm520.*
-- value: true
-  variants:
+default:
+- enabled-by:
+  - powerpc/pm520_cr825
+  - powerpc/pm520_ze30
   - powerpc/icecube
+  value: true
+- enabled-by: true
+  value: false
 description: |
   enable U-Boot startup
 enabled-by: true

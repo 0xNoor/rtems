@@ -243,26 +243,29 @@ BSP_START_TEXT_SECTION static inline rtems_status_code aarch64_mmu_map_block(
     /* check for perfect block match */
     if ( block_bottom == addr ) {
       if ( size >= chunk_size ) {
-        /* when page_flag is set the last level must be a page descriptor */
-        if ( page_flag || ( page_table[index] & MMU_DESC_TYPE_TABLE ) != MMU_DESC_TYPE_TABLE ) {
+        /* level -1 can't contain block descriptors, fall through to subtable */
+        if ( level != -1 ) {
+          /* when page_flag is set the last level must be a page descriptor */
+          if ( page_flag || ( page_table[index] & MMU_DESC_TYPE_TABLE ) != MMU_DESC_TYPE_TABLE ) {
+            /* no sub-table, apply block properties */
+            page_table[index] = addr | flags | page_flag;
+            size -= chunk_size;
+            addr += chunk_size;
+            continue;
+          }
+        }
+      } else {
+        /* block starts on a boundary, but is short */
+        chunk_size = size;
+
+        /* it isn't possible to go beyond page table level 2 */
+        if ( page_flag ) {
           /* no sub-table, apply block properties */
           page_table[index] = addr | flags | page_flag;
           size -= chunk_size;
           addr += chunk_size;
           continue;
         }
-      } else {
-        /* block starts on a boundary, but is short */
-        chunk_size = size;
-
-	/* it isn't possible to go beyond page table level 2 */
-	if ( page_flag ) {
-          /* no sub-table, apply block properties */
-          page_table[index] = addr | flags | page_flag;
-          size -= chunk_size;
-          addr += chunk_size;
-          continue;
-	}
       }
     } else {
       uintptr_t block_top = RTEMS_ALIGN_UP( addr, granularity );
@@ -417,7 +420,13 @@ aarch64_mmu_disable( void )
 {
   uint64_t sctlr;
 
-  /* Enable MMU and cache */
+  /*
+   * Flush data cache before disabling the MMU. While the MMU is disabled, all
+   * accesses are treated as uncached device memory.
+   */
+  rtems_cache_flush_entire_data();
+
+  /* Disable MMU */
   sctlr = _AArch64_Read_sctlr_el1();
   sctlr &= ~(AARCH64_SCTLR_EL1_M);
   _AArch64_Write_sctlr_el1( sctlr );

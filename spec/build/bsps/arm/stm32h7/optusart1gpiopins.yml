@@ -1,21 +1,22 @@
+SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
 actions:
 - get-string: null
 - define-unquoted: null
 build-type: option
-default: ( GPIO_PIN_14 | GPIO_PIN_15 )
-default-by-variant:
-- value: ( GPIO_PIN_9 | GPIO_PIN_10 )
-  variants:
-  - arm/stm32h7b3i-dk
+copyrights:
+- Copyright (C) 2021-22 embedded brains GmbH (http://www.embedded-brains.de)
+default:
+- enabled-by:
   - arm/stm32h747i-disco
   - arm/stm32h747i-disco-m4
+  - arm/stm32h7b3i-dk
+  value: ( GPIO_PIN_9 | GPIO_PIN_10 )
+- enabled-by: true
+  value: ( GPIO_PIN_14 | GPIO_PIN_15 )
+description: |
+  GPIO pins used for the USART1 pin configuration.
 enabled-by: true
 format: '{}'
 links: []
 name: STM32H7_USART1_GPIO_PINS
-description: |
-  GPIO pins used for the USART1 pin configuration.
 type: build
-SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
-copyrights:
-- Copyright (C) 2021-22 embedded brains GmbH (http://www.embedded-brains.de)

@@ -116,8 +116,8 @@ struct bintime;
  * before 2100-01-01:00:00.000000000Z.  The latest valid time of day accepted
  * by the POSIX clock_settime() is 2400-01-01T00:00:00.999999999Z.
  *
- * The specified time is based on the configured clock tick rate, see the
- * #CONFIGURE_MICROSECONDS_PER_TICK application configuration option.
+ * The specified time is based on the configured clock tick rate, see the @ref
+ * CONFIGURE_MICROSECONDS_PER_TICK application configuration option.
  *
  * Setting the time forward will fire all CLOCK_REALTIME timers which are
  * scheduled at a time point before or at the time set by the directive.  This
@@ -853,8 +853,8 @@ rtems_status_code rtems_clock_get_seconds_since_epoch(
  *   application.
  *
  * @par Notes
- * The number of clock ticks per second is defined indirectly by the
- * #CONFIGURE_MICROSECONDS_PER_TICK configuration option.
+ * The number of clock ticks per second is defined indirectly by the @ref
+ * CONFIGURE_MICROSECONDS_PER_TICK configuration option.
  *
  * @par Constraints
  * @parblock
@@ -909,7 +909,7 @@ rtems_interval rtems_clock_get_ticks_since_boot( void );
  * @brief Gets the seconds and nanoseconds elapsed since some time point during
  *   the system initialization using CLOCK_MONOTONIC.
  *
- * @param[out] uptime is the pointer to a struct timeval object.  When the
+ * @param[out] uptime is the pointer to a struct timespec object.  When the
  *   directive call is successful, the seconds and nanoseconds elapsed since
  *   some time point during the system initialization and some point during the
  *   directive call using CLOCK_MONOTONIC will be stored in this object.

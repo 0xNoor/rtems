@@ -20,6 +20,7 @@ install:
   - bsps/arm/beagle/include/bsp/irq.h
   - bsps/arm/beagle/include/bsp/pwmss.h
   - bsps/arm/beagle/include/bsp/qep.h
+  - bsps/arm/beagle/include/bsp/spi.h
 - destination: ${BSP_LIBDIR}
   source:
   - bsps/arm/beagle/start/linkcmds
@@ -35,6 +36,8 @@ source:
 - bsps/arm/beagle/qep/qep.c
 - bsps/arm/beagle/rtc/rtc.c
 - bsps/arm/beagle/spi/spi.c
+- bsps/arm/beagle/dcan/dcan.c
+- bsps/arm/beagle/dcan/am335x-dcan.c
 - bsps/arm/beagle/start/bspdebug.c
 - bsps/arm/beagle/start/bspreset.c
 - bsps/arm/beagle/start/bspstart.c

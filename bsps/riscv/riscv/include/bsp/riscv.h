@@ -34,16 +34,6 @@
 extern "C" {
 #endif
 
-static inline uint32_t _RISCV_Map_hardid_to_cpu_index(uint32_t hardid)
-{
-  return (hardid - RISCV_BOOT_HARTID);
-}
-
-static inline uint32_t _RISCV_Map_cpu_index_to_hardid(uint32_t cpu_index)
-{
-  return (cpu_index + RISCV_BOOT_HARTID);
-}
-
 extern volatile RISCV_CLINT_regs *riscv_clint;
 
 void *riscv_fdt_get_address(const void *fdt, int node);
@@ -62,7 +52,7 @@ extern uint32_t riscv_hart_count;
 
 uint32_t riscv_get_hart_index_by_phandle(uint32_t phandle);
 
-#if RISCV_ENABLE_HTIF_SUPPORT != 0
+#ifdef RISCV_ENABLE_HTIF_SUPPORT
 void htif_poweroff(void);
 #endif
 

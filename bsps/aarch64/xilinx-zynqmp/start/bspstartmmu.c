@@ -50,6 +50,10 @@ zynqmp_mmu_config_table[] = {
     .begin = 0xfd000000U,
     .end = 0xffc00000U,
     .flags = AARCH64_MMU_DEVICE
+  }, {
+    .begin = 0x80000000U,
+    .end = 0x80100000U,
+    .flags = 0
   }
 };
 

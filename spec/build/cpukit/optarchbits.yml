@@ -6,20 +6,32 @@ actions:
 build-type: option
 copyrights:
 - Copyright (C) 2020 Hesham Almatary <Hesham.Almatary@cl.cam.ac.uk>
-default: ''
-default-by-variant:
-- value:
+default:
+- enabled-by:
+  - riscv/mpfs64imafdc
+  - riscv/noel64imac
+  - riscv/noel64imafd
+  - riscv/noel64imafdc
+  - riscv/rv64imac
+  - riscv/rv64imafd
+  - riscv/rv64imafdc
+  value:
   - '64'
-  variants:
-  - riscv/mpfs64.*
-  - riscv/noel64.*
-  - riscv/rv64.*
-- value:
-  - '32'
-  variants:
+- enabled-by:
   - riscv/griscv
-  - riscv/noel32.*
-  - riscv/rv32.*
+  - riscv/noel32im
+  - riscv/noel32imafd
+  - riscv/rv32i
+  - riscv/rv32iac
+  - riscv/rv32im
+  - riscv/rv32imac
+  - riscv/rv32imafc
+  - riscv/rv32imafd
+  - riscv/rv32imafdc
+  value:
+  - '32'
+- enabled-by: true
+  value: ''
 description: The architecture word bits for the clang target triple.
 enabled-by:
 - and:

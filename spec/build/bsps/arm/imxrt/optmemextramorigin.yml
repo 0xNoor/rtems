@@ -1,17 +1,18 @@
+SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
 actions:
 - get-integer: null
 - env-assign: null
 build-type: option
-default: 0x80000000
-default-by-variant: []
+copyrights:
+- Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+default:
+- enabled-by: true
+  value: 0x80000000
+description: |
+  Base address of the external RAM.  An external ram can be for example be a
+  SDRAM connected to SEMC or a HyperRAM connected to FlexSPI.
 enabled-by: true
 format: '{:#010x}'
 links: []
 name: IMXRT_MEMORY_EXTRAM_ORIGIN
-description: |
-  Base address of the external RAM.  An external ram can be for example be a
-  SDRAM connected to SEMC or a HyperRAM connected to FlexSPI.
 type: build
-SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
-copyrights:
-- Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)

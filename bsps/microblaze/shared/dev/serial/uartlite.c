@@ -35,6 +35,7 @@
 
 #include <bsp/irq.h>
 #include <dev/serial/uartlite.h>
+#include <bspopts.h>
 
 #ifdef BSP_MICROBLAZE_FPGA_CONSOLE_INTERRUPTS
 static void microblaze_uart_interrupt( void *arg )
@@ -47,7 +48,7 @@ static void microblaze_uart_interrupt( void *arg )
     rtems_termios_enqueue_raw_characters( tty, &c, 1 );
   }
 
-  while ( ctx->transmitting && !XUartLite_IsTransmitEmpty( ctx ) ) {
+  while ( ctx->transmitting && !XUartLite_IsTransmitEmpty( ctx->address ) ) {
     rtems_termios_dequeue_characters( tty, 1 );
   }
 }
@@ -69,8 +70,15 @@ static bool uart_first_open(
 
 #ifdef BSP_MICROBLAZE_FPGA_CONSOLE_INTERRUPTS
   XUartLite_EnableIntr( ctx->address );
+
+  uint32_t uart_irq_num = try_get_prop_from_device_tree(
+    "xlnx,xps-uartlite-1.00.a",
+    "interrupts",
+    1
+  );
+
   sc = rtems_interrupt_handler_install(
-    1,
+    uart_irq_num,
     "UART",
     RTEMS_INTERRUPT_SHARED,
     microblaze_uart_interrupt,

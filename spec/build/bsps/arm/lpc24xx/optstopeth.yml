@@ -5,11 +5,13 @@ actions:
 build-type: option
 copyrights:
 - Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
-default: true
-default-by-variant:
-- value: false
-  variants:
-  - arm/lpc23.*
+default:
+- enabled-by:
+  - arm/lpc2362
+  - arm/lpc23xx_tli800
+  value: false
+- enabled-by: true
+  value: true
 description: |
   stop Ethernet controller at start-up to avoid DMA interference
 enabled-by: true

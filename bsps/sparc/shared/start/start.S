@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: BSD-2-Clause */
+
 /**
  *  Common start code for SPARC.
  *
@@ -10,9 +12,26 @@
  *  COPYRIGHT (c) 1989-2011.
  *  On-Line Applications Research Corporation (OAR).
  *
- *  The license and distribution terms for this file may be
- *  found in the file LICENSE in this distribution or at
- *  http://www.rtems.org/license/LICENSE.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include <rtems/asm.h>
@@ -474,17 +493,13 @@ SYM(hard_reset):
         mov     %sp, %fp ! set frame pointer
 
 #if defined(START_LEON3_ENABLE_SMP)
-	/* If LEON3_Boot_Cpu < 0 then assign us as boot CPU and continue. */
-        set     SYM(LEON3_Boot_Cpu), %l0
-        ld      [%l0], %l1
-        tst     %l1
-	bneg	.Lbootcpu
-	 nop
-
-	call	SYM(bsp_start_on_secondary_processor) ! does not return
-	 mov	%g6, %o0
-.Lbootcpu:
-	st	%l7, [%l0]
+        /* If .Lbootcpuindex < 0 then assign us as boot CPU and continue. */
+        set     SYM(.Lbootcpuindex), %l0
+        mov     -1, %l1
+        casa    [%l0] (10), %l1, %l7
+        cmp     %l1, %l7
+        bne     .Lbootsecondarycpu
+         nop
 #endif
 
         /* clear the bss */
@@ -507,5 +522,22 @@ SYM(hard_reset):
 
         call    SYM(boot_card)          ! does not return
          mov    %g0, %o0                ! command line
+
+#if defined(START_LEON3_ENABLE_SMP)
+.Lbootsecondarycpu:
+        call    SYM(bsp_start_on_secondary_processor) ! does not return
+         mov    %g6, %o0
+
+        /*
+         * This is the index of the boot CPU.  Set by the first CPU at boot to
+         * its CPU index.
+         */
+        .section .data, "aw"
+        .align  4
+        .type   .Lbootcpuindex, #object
+        .size   .Lbootcpuindex, 4
+.Lbootcpuindex:
+        .long   -1
+#endif
 
 /* end of file */

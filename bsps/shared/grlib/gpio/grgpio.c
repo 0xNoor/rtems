@@ -1,11 +1,30 @@
+/* SPDX-License-Identifier: BSD-2-Clause */
+
 /*  GRGPIO GPIO Driver interface.
  *
  *  COPYRIGHT (c) 2009.
  *  Cobham Gaisler AB.
  *
- *  The license and distribution terms for this file may be
- *  found in the file LICENSE in this distribution or at
- *  http://www.rtems.org/license/LICENSE.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include <bsp.h>
@@ -360,12 +379,12 @@ static int grgpio_gpiolib_get_info(void *handle, struct gpiolib_info *pinfo)
 		/* Failed to get prefix, make sure of a unique FS name
 		 * by using the driver minor.
 		 */
-		snprintf(pinfo->devName, 64, "/dev/grgpio%d/%d", dev->minor_drv, portnr);
+		snprintf(pinfo->devName, 80, "/dev/grgpio%d/%d", dev->minor_drv, portnr);
 	} else {
 		/* Got special prefix, this means we have a bus prefix
 		 * And we should use our "bus minor"
 		 */
-		snprintf(pinfo->devName, 64, "/dev/%sgrgpio%d/%d", prefix, dev->minor_bus, portnr);
+		snprintf(pinfo->devName, 80, "/dev/%sgrgpio%d/%d", prefix, dev->minor_bus, portnr);
 	}
 
 	return 0;

@@ -11,8 +11,8 @@
  */
 
 /*
- *  COPYRIGHT (c) 1989-2006.
- *  On-Line Applications Research Corporation (OAR).
+ * Copyright (C) 2022 embedded brains GmbH
+ * Copyright (C) 1989, 2021 On-Line Applications Research Corporation (OAR)
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -105,15 +105,22 @@ typedef void ( *Stack_Allocator_free )( void *addr );
  * The allocate for idle handler is optional even when the user thread stack
  * allocator and deallocator are configured.
  *
- * @param cpu Index of the CPU for the IDLE thread using this stack
- * @param stack_size The size of the stack area to allocate in bytes.
+ * @param cpu is the index of the CPU for the IDLE thread using this stack.
  *
- * @retval NULL Not enough memory.
- * @retval other Pointer to begin of stack area.
+ * @param stack_size[in, out] is pointer to a size_t object.  On function
+ *   entry, the object contains the proposed size of the stack area to allocate
+ *   in bytes.  The proposed size does not take the actual thread-local storage
+ *   size of the application into account.  The stack allocator can modify the
+ *   size to ensure that there is enough space available in the stack area for
+ *   the thread-local storage.
+ *
+ * @retval NULL There was not enough memory available to allocate a stack area.
+ *
+ * @return Returns the pointer to begin of the allocated stack area.
  */
 typedef void *( *Stack_Allocator_allocate_for_idle )(
   uint32_t  cpu,
-  size_t    stack_size
+  size_t   *stack_size
 );
 
 /**
@@ -165,7 +172,57 @@ extern const Stack_Allocator_free _Stack_Allocator_free;
  */
 void _Stack_Allocator_do_initialize( void );
 
-/** @} */
+/**
+ * @brief Allocates the IDLE thread storage area from the workspace.
+ *
+ * If the thread storage area cannot be allocated, then the
+ * ::INTERNAL_ERROR_NO_MEMORY_FOR_IDLE_TASK_STACK fatal error will occur.
+ *
+ * @param unused is an unused parameter.
+ *
+ * @param stack_size[in] is pointer to a size_t object.  On function entry, the
+ *   object contains the size of the task storage area to allocate in bytes.
+ *
+ * @return Returns a pointer to the begin of the allocated task storage area.
+ */
+void *_Stack_Allocator_allocate_for_idle_workspace(
+  uint32_t  unused,
+  size_t   *storage_size
+);
+
+/**
+ * @brief The size in bytes of the idle thread storage area used by
+ *   _Stack_Allocator_allocate_for_idle_static().
+ *
+ * Application provided via <rtems/confdefs.h>.
+ */
+extern const size_t _Stack_Allocator_allocate_for_idle_storage_size;
+
+/**
+ * @brief The thread storage areas used by
+ *   _Stack_Allocator_allocate_for_idle_static().
+ *
+ * Application provided via <rtems/confdefs.h>.
+ */
+extern char _Stack_Allocator_allocate_for_idle_storage_areas[];
+
+/**
+ * @brief Allocates the IDLE thread storage from the memory statically
+ *   allocated by <rtems/confdefs.h>.
+ *
+ * @param cpu_index is the index of the CPU for the IDLE thread using this stack.
+ *
+ * @param stack_size[out] is pointer to a size_t object.  On function return, the
+ *   object value is set to the value of
+ *   ::_Stack_Allocator_allocate_for_idle_storage_size.
+ *
+ * @return Returns a pointer to the begin of the allocated task storage area.
+ */
+void *_Stack_Allocator_allocate_for_idle_static(
+  uint32_t  cpu_index,
+  size_t   *storage_size
+);
+
 /**
  * @brief The stack allocator allocate stack for idle thread handler.
  *
@@ -173,6 +230,8 @@ void _Stack_Allocator_do_initialize( void );
  */
 extern const Stack_Allocator_allocate_for_idle
   _Stack_Allocator_allocate_for_idle;
+
+/** @} */
 
 #ifdef __cplusplus
 }
