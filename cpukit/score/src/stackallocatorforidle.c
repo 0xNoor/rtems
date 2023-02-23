@@ -1,6 +1,15 @@
-/*
- * SPDX-License-Identifier: BSD-2-Clause
+/* SPDX-License-Identifier: BSD-2-Clause */
+
+/**
+ * @file
  *
+ * @ingroup RTEMSScoreStack
+ *
+ * @brief This source file contains the implementation of
+ *   _Stack_Allocator_allocate_for_idle_static().
+ */
+
+/*
  * Copyright (C) 2021 On-Line Applications Research Corporation (OAR)
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,36 +39,21 @@
 #endif
 
 #include <rtems/score/stack.h>
-#include <rtems/score/thread.h>
 #include <rtems/score/assert.h>
 
-/**
- * @brief Default stack allocator allocate for idle handler.
- *
- * The allocate for idle handler is optional even when the user thread stack
- * allocator and deallocator are configured.
- *
- * The default allocator for IDLE thread stacks gets the memory from a
- * statically allocated area provided via confdefs.h.
- *
- * @param cpu_index Index of the CPU for the IDLE thread using this stack
- * @param stack_size The size of the stack area to allocate in bytes.
- *
- * @retval NULL Not enough memory (never returned).
- * @retval other Pointer to begin of stack area.
- */
-static void *_Stack_Allocator_allocate_for_idle_default(
+void *_Stack_Allocator_allocate_for_idle_static(
   uint32_t  cpu_index,
-  size_t    stack_size
+  size_t   *storage_size
 )
 {
+  size_t size;
+
+  size = _Stack_Allocator_allocate_for_idle_storage_size;
+  *storage_size = size;
 #if defined(RTEMS_SMP)
-  return &_Thread_Idle_stacks[ cpu_index * stack_size ];
+  return &_Stack_Allocator_allocate_for_idle_storage_areas[ cpu_index * size ];
 #else
   _Assert( cpu_index == 0 );
-  return &_Thread_Idle_stacks[ 0 ];
+  return &_Stack_Allocator_allocate_for_idle_storage_areas[ 0 ];
 #endif
 }
-
-const Stack_Allocator_allocate_for_idle _Stack_Allocator_allocate_for_idle =
-        _Stack_Allocator_allocate_for_idle_default;

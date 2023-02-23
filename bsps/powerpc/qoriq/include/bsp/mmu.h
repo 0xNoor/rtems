@@ -91,6 +91,8 @@ void qoriq_mmu_write_to_tlb1(qoriq_mmu_context *self, int first_tlb);
 
 void qoriq_mmu_change_perm(uint32_t test, uint32_t set, uint32_t clear);
 
+int qoriq_mmu_find_free_tlb1_entry(void);
+
 void qoriq_mmu_config(bool boot_processor, int first_tlb, int scratch_tlb);
 
 void qoriq_tlb1_write(
@@ -101,6 +103,16 @@ void qoriq_tlb1_write(
 	uint32_t mas7,
 	uintptr_t ea,
 	int tsize
+);
+
+void qoriq_mmu_adjust_and_write_to_tlb1(
+	int tlb,
+	uintptr_t begin,
+	uintptr_t last,
+	uint32_t mas1,
+	uint32_t mas2,
+	uint32_t mas3,
+	uint32_t mas7
 );
 
 void qoriq_tlb1_invalidate(int esel);

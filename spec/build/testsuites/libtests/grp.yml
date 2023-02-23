@@ -77,6 +77,8 @@ links:
 - role: build-dependency
   uid: crypt01
 - role: build-dependency
+  uid: can01
+- role: build-dependency
   uid: debugger01
 - role: build-dependency
   uid: defaultconfig01
@@ -108,6 +110,8 @@ links:
   uid: dl09
 - role: build-dependency
   uid: dl10
+- role: build-dependency
+  uid: dl11
 - role: build-dependency
   uid: dumpbuf01
 - role: build-dependency

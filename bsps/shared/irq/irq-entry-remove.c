@@ -3,7 +3,7 @@
 /**
  * @file
  *
- * @ingroup bsp_interrupt
+ * @ingroup RTEMSImplClassicIntr
  *
  * @brief This source file contains the implementation of
  *   rtems_interrupt_entry_remove() and bsp_interrupt_entry_remove().
@@ -46,8 +46,8 @@ void bsp_interrupt_entry_remove(
   rtems_interrupt_entry *first;
   rtems_interrupt_entry *entry_next;
 
-  index = bsp_interrupt_handler_index( vector );
-  first = bsp_interrupt_handler_table[ index ];
+  index = bsp_interrupt_dispatch_index( vector );
+  first = *bsp_interrupt_get_dispatch_table_slot( index );
   entry_next = entry->next;
 
   if ( entry == first && entry_next == NULL ) {
@@ -60,7 +60,7 @@ void bsp_interrupt_entry_remove(
 #endif
     bsp_interrupt_set_handler_unique( index, false );
 #if defined(BSP_INTERRUPT_USE_INDEX_TABLE)
-    bsp_interrupt_handler_index_table[ vector ] = 0;
+    bsp_interrupt_dispatch_index_table[ vector ] = 0;
 #endif
   }
 

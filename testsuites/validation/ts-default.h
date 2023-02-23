@@ -317,14 +317,17 @@ RTEMS_SCHEDULER_PRIORITY( a, 64 );
 #define CONFIGURE_IDLE_TASK_STACK_SIZE TEST_IDLE_STACK_SIZE
 
 static char test_idle_stacks[ CONFIGURE_MAXIMUM_PROCESSORS ][
-  ( TEST_IDLE_STACK_SIZE + CPU_IDLE_TASK_IS_FP * CONTEXT_FP_SIZE )
+  RTEMS_ALIGN_UP(
+    MAX_TLS_SIZE + TEST_IDLE_STACK_SIZE + CPU_IDLE_TASK_IS_FP * CONTEXT_FP_SIZE,
+    CPU_INTERRUPT_STACK_ALIGNMENT
+  )
 ]
 RTEMS_ALIGNED( CPU_INTERRUPT_STACK_ALIGNMENT )
 RTEMS_SECTION( ".rtemsstack.idle" );
 
-void *test_idle_task_stack_allocate( uint32_t cpu_index, size_t size )
+void *test_idle_task_stack_allocate( uint32_t cpu_index, size_t *size )
 {
-  if ( size > sizeof( test_idle_stacks[ 0 ] ) ) {
+  if ( *size > sizeof( test_idle_stacks[ 0 ] ) ) {
     rtems_fatal( RTEMS_FATAL_SOURCE_APPLICATION, 0xABAD1DEA );
   }
 

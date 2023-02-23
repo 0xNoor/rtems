@@ -5,12 +5,9 @@ actions:
 build-type: option
 copyrights:
 - Copyright (C) 2020 On-Line Applications Research (OAR)
-default: 100000000
-default-by-variant:
-- value: 100000000
-  variants:
-  - aarch64/xilinx_zynqmp_ilp32.*
-  - aarch64/xilinx_zynqmp_lp64.*
+default:
+- enabled-by: true
+  value: 100000000
 description: |
   Zynq UART clock frequency in Hz
 enabled-by: true

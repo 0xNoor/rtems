@@ -8,17 +8,15 @@ actions:
 build-type: option
 copyrights:
 - Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
-default: 67108864
-default-by-variant:
-- value: 268435456
-  variants:
+default:
+- enabled-by:
   - riscv/frdme310arty
-- value: 16777216
-  variants:
-  - riscv/griscv
-- value: 268435456
-  variants:
-  - riscv/mpfs64.*
+  - riscv/mpfs64imafdc
+  value: 0x10000000
+- enabled-by: riscv/griscv
+  value: 0x01000000
+- enabled-by: true
+  value: 0x04000000
 description: ''
 enabled-by: true
 format: '{:#010x}'

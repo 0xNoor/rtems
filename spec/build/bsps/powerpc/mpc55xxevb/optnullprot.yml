@@ -5,14 +5,13 @@ actions:
 build-type: option
 copyrights:
 - Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
-default: false
-default-by-variant:
-- value: true
-  variants:
-  - powerpc/mpc5566.*
-- value: true
-  variants:
-  - powerpc/mpc5674f.*
+default:
+- enabled-by:
+  - powerpc/mpc5566evb
+  - powerpc/mpc5674fevb
+  value: true
+- enabled-by: true
+  value: false
 description: |
   enable NULL pointer protection
 enabled-by: true

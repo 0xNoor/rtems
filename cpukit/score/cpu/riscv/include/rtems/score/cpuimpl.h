@@ -54,6 +54,8 @@
 #define CPU_PER_CPU_CONTROL_SIZE 16
 #endif
 
+#define CPU_THREAD_LOCAL_STORAGE_VARIANT 10
+
 #ifdef RTEMS_SMP
 #define RISCV_CONTEXT_IS_EXECUTING 0
 #endif
@@ -295,6 +297,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+static inline uint32_t _RISCV_Map_hardid_to_cpu_index( uint32_t hardid )
+{
+  return hardid - RISCV_BOOT_HARTID;
+}
+
+static inline uint32_t _RISCV_Map_cpu_index_to_hardid( uint32_t cpu_index )
+{
+  return cpu_index + RISCV_BOOT_HARTID;
+}
 
 /* Core Local Interruptor (CLINT) */
 

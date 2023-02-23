@@ -29,7 +29,7 @@
 
 #include <bsp/riscv.h>
 
-#if RISCV_ENABLE_HTIF_SUPPORT != 0
+#ifdef RISCV_ENABLE_HTIF_SUPPORT
 
 #include <dev/serial/htif.h>
 

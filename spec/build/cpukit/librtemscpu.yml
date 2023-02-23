@@ -52,6 +52,11 @@ install:
 - destination: ${BSP_INCLUDEDIR}/dev/spi
   source:
   - cpukit/include/dev/spi/spi.h
+- destination: ${BSP_INCLUDEDIR}/dev/can
+  source:
+  - cpukit/include/dev/can/can.h
+  - cpukit/include/dev/can/can-msg.h
+  - cpukit/include/dev/can/canqueueimpl.h
 - destination: ${BSP_INCLUDEDIR}/linux
   source:
   - cpukit/include/linux/i2c-dev.h
@@ -160,8 +165,6 @@ install:
   - cpukit/include/rtems/rtems-rfs.h
   - cpukit/include/rtems/rtemsdialer.h
   - cpukit/include/rtems/scheduler.h
-  - cpukit/include/rtems/serdbg.h
-  - cpukit/include/rtems/serdbgcnf.h
   - cpukit/include/rtems/serial_mouse.h
   - cpukit/include/rtems/seterr.h
   - cpukit/include/rtems/shell.h
@@ -173,8 +176,6 @@ install:
   - cpukit/include/rtems/stdio-redirect.h
   - cpukit/include/rtems/stringto.h
   - cpukit/include/rtems/sysinit.h
-  - cpukit/include/rtems/termios_printk.h
-  - cpukit/include/rtems/termios_printk_cnf.h
   - cpukit/include/rtems/termiostypes.h
   - cpukit/include/rtems/thread.h
   - cpukit/include/rtems/timecounter.h
@@ -535,6 +536,7 @@ source:
 - cpukit/dev/serial/sc16is752-spi.c
 - cpukit/dev/serial/sc16is752.c
 - cpukit/dev/spi/spi-bus.c
+- cpukit/dev/can/can.c
 - cpukit/dtc/libfdt/fdt.c
 - cpukit/dtc/libfdt/fdt_addresses.c
 - cpukit/dtc/libfdt/fdt_empty_tree.c
@@ -1545,6 +1547,7 @@ source:
 - cpukit/score/src/smpbarrierwait.c
 - cpukit/score/src/stackallocator.c
 - cpukit/score/src/stackallocatorforidle.c
+- cpukit/score/src/stackallocatorforidlewkspace.c
 - cpukit/score/src/stackallocatorfree.c
 - cpukit/score/src/stackallocatorinit.c
 - cpukit/score/src/thread.c

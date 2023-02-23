@@ -1,24 +1,25 @@
+SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
 actions:
 - get-integer: null
 - env-assign: null
 build-type: option
-default: 33554432
-default-by-variant:
-- value: 0
-  variants:
-  - arm/stm32h7b3i-dk
-  - arm/stm32h757i-eval
-  - arm/stm32h757i-eval-m4
+copyrights:
+- Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+default:
+- enabled-by:
+  - arm/nucleo-h743zi
   - arm/stm32h747i-disco
   - arm/stm32h747i-disco-m4
-  - arm/nucleo-h743zi
+  - arm/stm32h757i-eval
+  - arm/stm32h757i-eval-m4
+  - arm/stm32h7b3i-dk
+  value: 0x00000000
+- enabled-by: true
+  value: 0x02000000
+description: |
+  Size of the SDRAM 1 in bytes.
 enabled-by: true
 format: '{:#010x}'
 links: []
 name: STM32H7_MEMORY_SDRAM_1_SIZE
-description: |
-  Size of the SDRAM 1 in bytes.
 type: build
-SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
-copyrights:
-- Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)

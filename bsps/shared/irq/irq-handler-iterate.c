@@ -3,7 +3,7 @@
 /**
  * @file
  *
- * @ingroup bsp_interrupt
+ * @ingroup RTEMSImplClassicIntr
  *
  * @brief This source file contains the implementation of
  *   rtems_interrupt_handler_iterate().
@@ -56,10 +56,10 @@ rtems_status_code rtems_interrupt_handler_iterate(
     return sc;
   }
 
-  index = bsp_interrupt_handler_index( vector );
+  index = bsp_interrupt_dispatch_index( vector );
+  entry = *bsp_interrupt_get_dispatch_table_slot( index );
   options = bsp_interrupt_is_handler_unique( index ) ?
     RTEMS_INTERRUPT_UNIQUE : RTEMS_INTERRUPT_SHARED;
-  entry = bsp_interrupt_handler_table[ index ];
 
   while ( entry != NULL ) {
     ( *routine )( arg, entry->info, options, entry->handler, entry->arg );

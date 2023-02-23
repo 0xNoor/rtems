@@ -3,7 +3,7 @@
 /**
  * @file
  *
- * @ingroup bsp_interrupt
+ * @ingroup RTEMSImplClassicIntr
  *
  * @brief This source file contains the generic interrupt controller support
  *   implementation.
@@ -42,20 +42,27 @@
 #include <rtems/malloc.h>
 
 #ifdef BSP_INTERRUPT_USE_INDEX_TABLE
-  bsp_interrupt_handler_index_type bsp_interrupt_handler_index_table
+  bsp_interrupt_dispatch_index_type bsp_interrupt_dispatch_index_table
     [BSP_INTERRUPT_VECTOR_COUNT];
 #endif
 
 rtems_interrupt_entry *
-bsp_interrupt_handler_table[ BSP_INTERRUPT_HANDLER_TABLE_SIZE ];
+bsp_interrupt_dispatch_table[ BSP_INTERRUPT_DISPATCH_TABLE_SIZE ];
+
+RTEMS_WEAK rtems_interrupt_entry **bsp_interrupt_get_dispatch_table_slot(
+  rtems_vector_number index
+)
+{
+  return &bsp_interrupt_dispatch_table[ index ];
+}
 
 /* The last entry indicates if everything is initialized */
 uint8_t bsp_interrupt_handler_unique_table
-  [ ( BSP_INTERRUPT_HANDLER_TABLE_SIZE + 7 + 1 ) / 8 ];
+  [ ( BSP_INTERRUPT_DISPATCH_TABLE_SIZE + 7 + 1 ) / 8 ];
 
 static inline void bsp_interrupt_set_initialized(void)
 {
-  bsp_interrupt_set_handler_unique(BSP_INTERRUPT_HANDLER_TABLE_SIZE, true);
+  bsp_interrupt_set_handler_unique(BSP_INTERRUPT_DISPATCH_TABLE_SIZE, true);
 }
 
 #if defined(BSP_INTERRUPT_USE_INDEX_TABLE)
@@ -66,8 +73,8 @@ static inline rtems_vector_number bsp_interrupt_allocate_handler_index(
   rtems_vector_number i;
 
   /* The first entry will remain empty */
-  for ( i = 1; i < BSP_INTERRUPT_HANDLER_TABLE_SIZE; ++i ) {
-    if (  bsp_interrupt_handler_table[ i ] == NULL ) {
+  for ( i = 1; i < BSP_INTERRUPT_DISPATCH_TABLE_SIZE; ++i ) {
+    if (  bsp_interrupt_dispatch_table[ i ] == NULL ) {
       break;
     }
   }
@@ -91,9 +98,9 @@ void bsp_interrupt_spurious( rtems_vector_number vector )
    * In order to get the last written pointer value to the first entry, we have
    * to carry out an atomic read-modify-write operation.
    */
-  ptr = (Atomic_Uintptr *) &bsp_interrupt_handler_table[
-    bsp_interrupt_handler_index( vector )
-  ];
+  ptr = (Atomic_Uintptr *) bsp_interrupt_get_dispatch_table_slot(
+    bsp_interrupt_dispatch_index( vector )
+  );
   first = (rtems_interrupt_entry *)
     _Atomic_Fetch_add_uintptr( ptr, 0, ATOMIC_ORDER_ACQUIRE );
 
@@ -142,9 +149,9 @@ rtems_interrupt_entry *bsp_interrupt_entry_find(
   rtems_interrupt_entry *entry;
 
   bsp_interrupt_assert( bsp_interrupt_is_valid_vector( vector ) );
-  index = bsp_interrupt_handler_index( vector );
-  *previous_next = &bsp_interrupt_handler_table[ index ];
-  entry = bsp_interrupt_handler_table[ index ];
+  index = bsp_interrupt_dispatch_index( vector );
+  *previous_next = bsp_interrupt_get_dispatch_table_slot( index );
+  entry = **previous_next;
 
   while ( entry != NULL ) {
     if ( entry->handler == routine && entry->arg == arg ) {
@@ -175,7 +182,7 @@ static rtems_status_code bsp_interrupt_entry_install_first(
 #ifdef BSP_INTERRUPT_USE_INDEX_TABLE
   index = bsp_interrupt_allocate_handler_index( vector );
 
-  if ( index == BSP_INTERRUPT_HANDLER_TABLE_SIZE ) {
+  if ( index == BSP_INTERRUPT_DISPATCH_TABLE_SIZE ) {
     /* Handler table is full */
     return RTEMS_NO_MEMORY;
   }
@@ -184,10 +191,10 @@ static rtems_status_code bsp_interrupt_entry_install_first(
 #endif
 
 #ifdef BSP_INTERRUPT_USE_INDEX_TABLE
-  bsp_interrupt_handler_index_table[ vector ] = index;
+  bsp_interrupt_dispatch_index_table[ vector ] = index;
 #endif
   bsp_interrupt_entry_store_release(
-    &bsp_interrupt_handler_table[ index ],
+    bsp_interrupt_get_dispatch_table_slot( index ),
     entry
   );
 
@@ -219,8 +226,8 @@ static rtems_status_code bsp_interrupt_entry_install(
     return RTEMS_INVALID_NUMBER;
   }
 
-  index = bsp_interrupt_handler_index( vector );
-  first = bsp_interrupt_handler_table[ index ];
+  index = bsp_interrupt_dispatch_index( vector );
+  first = *bsp_interrupt_get_dispatch_table_slot( index );
 
   if ( first == NULL ) {
     return bsp_interrupt_entry_install_first( vector, options, entry );
