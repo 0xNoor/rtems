@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsTaskValTask
+ * @ingroup RtemsTaskValTask
  */
 
 /*
- * Copyright (C) 2021, 2022 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021, 2022 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -62,9 +62,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsTaskValTask spec:/rtems/task/val/task
+ * @defgroup RtemsTaskValTask spec:/rtems/task/val/task
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @brief This test case collection provides validation test cases for
  *   requirements of the @ref RTEMSAPIClassicTasks.

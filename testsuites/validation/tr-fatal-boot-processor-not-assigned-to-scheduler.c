@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreSmpValFatalBootProcessorNotAssignedToScheduler
+ * @ingroup ScoreSmpValFatalBootProcessorNotAssignedToScheduler
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,10 +59,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseScoreSmpValFatalBootProcessorNotAssignedToScheduler \
+ * @defgroup ScoreSmpValFatalBootProcessorNotAssignedToScheduler \
  *   spec:/score/smp/val/fatal-boot-processor-not-assigned-to-scheduler
  *
- * @ingroup RTEMSTestSuiteTestsuitesFatalBootProcessorNotAssignedToScheduler
+ * @ingroup TestsuitesFatalBootProcessorNotAssignedToScheduler
  *
  * @brief Tests a fatal error.
  *

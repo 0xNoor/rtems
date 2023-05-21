@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseAcfgValApplNeedsClockDriver
+ * @ingroup AcfgValApplNeedsClockDriver
  */
 
 /*
- * Copyright (C) 2022 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2022 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,10 +57,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseAcfgValApplNeedsClockDriver \
- *   spec:/acfg/val/appl-needs-clock-driver
+ * @defgroup AcfgValApplNeedsClockDriver spec:/acfg/val/appl-needs-clock-driver
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidation0
+ * @ingroup TestsuitesValidation0
  *
  * @brief Tests the effect of the CONFIGURE_APPLICATION_NEEDS_CLOCK_DRIVER
  *   application configuration option.

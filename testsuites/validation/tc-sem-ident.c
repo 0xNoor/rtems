@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsSemValIdent
+ * @ingroup RtemsSemValIdent
  */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,16 +57,16 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsSemValIdent spec:/rtems/sem/val/ident
+ * @defgroup RtemsSemValIdent spec:/rtems/sem/val/ident
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @brief Test the rtems_semaphore_ident() directive.
  *
  * This test case performs the following actions:
  *
  * - Run the generic object identification tests for Classic API semaphore
- *   class objects defined by /rtems/req/ident.
+ *   class objects defined by spec:/rtems/req/ident.
  *
  * @{
  */
@@ -84,7 +84,7 @@ static rtems_status_code ClassicSemIdentAction(
 
 /**
  * @brief Run the generic object identification tests for Classic API semaphore
- *   class objects defined by /rtems/req/ident.
+ *   class objects defined by spec:/rtems/req/ident.
  */
 static void RtemsSemValIdent_Action_0( void )
 {

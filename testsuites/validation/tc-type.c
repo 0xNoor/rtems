@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsTypeValType
+ * @ingroup RtemsTypeValType
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021, 2023 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -58,9 +58,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsTypeValType spec:/rtems/type/val/type
+ * @defgroup RtemsTypeValType spec:/rtems/type/val/type
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @brief Tests some @ref RTEMSAPIClassicTypes interfaces.
  *
@@ -70,6 +70,13 @@
  *
  *   - Assert that RTEMS_ID_NONE cannot be associated with an object because it
  *     has an object index outside the range of valid object indices.
+ *
+ * - Validate the RTEMS_NO_TIMEOUT constant.
+ *
+ *   - Assert that RTEMS_NO_TIMEOUT is a compile time constant which evaluates
+ *     to a value of zero.
+ *
+ *   - Check that RTEMS_NO_TIMEOUT evaluates to a value of zero.
  *
  * @{
  */
@@ -93,11 +100,31 @@ static void RtemsTypeValType_Action_0( void )
 }
 
 /**
+ * @brief Validate the RTEMS_NO_TIMEOUT constant.
+ */
+static void RtemsTypeValType_Action_1( void )
+{
+  /* Nothing to do */
+
+  /*
+   * Assert that RTEMS_NO_TIMEOUT is a compile time constant which evaluates to
+   * a value of zero.
+   */
+  RTEMS_STATIC_ASSERT( RTEMS_NO_TIMEOUT == 0, NO_TIMEOUT );
+
+  /*
+   * Check that RTEMS_NO_TIMEOUT evaluates to a value of zero.
+   */
+  T_eq_u32( RTEMS_NO_TIMEOUT, 0 );
+}
+
+/**
  * @fn void T_case_body_RtemsTypeValType( void )
  */
 T_TEST_CASE( RtemsTypeValType )
 {
   RtemsTypeValType_Action_0();
+  RtemsTypeValType_Action_1();
 }
 
 /** @} */

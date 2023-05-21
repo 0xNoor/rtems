@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 embedded brains GmbH
+ * Copyright (c) 2018 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -111,6 +111,14 @@ static void riscv_find_harts(void)
 
     hart_index = fdt32_to_cpu(val[0]);
 
+#if RISCV_BOOT_HARTID != 0
+    if (hart_index < RISCV_BOOT_HARTID) {
+      continue;
+    }
+
+    hart_index -= RISCV_BOOT_HARTID;
+#endif
+
     if (hart_index >= RTEMS_ARRAY_SIZE(riscv_hart_phandles)) {
       continue;
     }
@@ -166,7 +174,7 @@ uint32_t riscv_get_hart_index_by_phandle(uint32_t phandle)
 
   for (hart_index = 0; hart_index < riscv_hart_count; ++hart_index) {
     if (riscv_hart_phandles[hart_index] == phandle) {
-      return hart_index;
+      return hart_index + RISCV_BOOT_HARTID;
     }
   }
 
@@ -201,7 +209,16 @@ static uint32_t get_core_frequency(void)
     return fdt32_to_cpu(*val);
   }
 #endif
+
+#if RISCV_ENABLE_KENDRYTE_K210_SUPPORT != 0
+  uint32_t cpu_clock;
+
+  cpu_clock = k210_get_frequency();
+  return cpu_clock;
+#else
   return 0;
+#endif
+
 }
 
 uint32_t riscv_get_core_frequency(void)
@@ -214,6 +231,40 @@ uint32_t bsp_fdt_map_intr(const uint32_t *intr, size_t icells)
   (void) icells;
   return RISCV_INTERRUPT_VECTOR_EXTERNAL(intr[0]);
 }
+
+#if RISCV_ENABLE_KENDRYTE_K210_SUPPORT != 0
+uint32_t k210_get_frequency(void)
+{
+  k210_sysctl_t *sysctl = (k210_sysctl_t *)K210_SYSCTL_BASE;
+  uint32_t cpu_clock = 0;
+  uint32_t clk_freq;
+  uint32_t pll0, nr, nf, od;
+  uint32_t node;
+  const char *fdt;
+  const fdt32_t *val;
+  int len;
+
+  fdt = bsp_fdt_get();
+  node = fdt_node_offset_by_compatible(fdt, -1,"fixed-clock");
+  val = fdt_getprop(fdt, node, "clock-frequency", &len);
+  if (val != NULL && len == 4) {
+    clk_freq = fdt32_to_cpu(*val);
+
+    if (CLKSEL0_ACLK_SEL(sysctl->clk_sel0) == 1) {
+       /* PLL0 selected */
+       pll0 = sysctl->pll0;
+       nr = PLL_CLK_R(pll0) + 1;
+       nf = PLL_CLK_F(pll0) + 1;
+       od = PLL_CLK_OD(pll0) + 1;
+       cpu_clock = (clk_freq / nr * nf / od)/2;
+    } else {
+       /* OSC selected */
+       cpu_clock = clk_freq;
+    }
+  }
+  return cpu_clock;
+}
+#endif
 
 void bsp_start(void)
 {

@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsBarrierReqDelete
+ * @ingroup RtemsBarrierReqDelete
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -60,9 +60,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsBarrierReqDelete spec:/rtems/barrier/req/delete
+ * @defgroup RtemsBarrierReqDelete spec:/rtems/barrier/req/delete
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @{
  */

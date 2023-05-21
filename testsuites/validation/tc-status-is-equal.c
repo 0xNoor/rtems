@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsStatusReqIsEqual
+ * @ingroup RtemsStatusReqIsEqual
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,9 +57,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsStatusReqIsEqual spec:/rtems/status/req/is-equal
+ * @defgroup RtemsStatusReqIsEqual spec:/rtems/status/req/is-equal
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @{
  */

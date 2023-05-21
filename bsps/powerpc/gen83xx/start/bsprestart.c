@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 
 /*
- * Copyright (c) 2008-2013 embedded brains GmbH.  All rights reserved.
+ * Copyright (C) 2008, 2013 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -46,7 +46,7 @@ void bsp_restart(void *addr)
   rtems_interrupt_disable(level);
   (void) level; /* avoid set but not used warning */
 
-  hid0 = PPC_SPECIAL_PURPOSE_REGISTER(HID0);
+  PPC_SPECIAL_PURPOSE_REGISTER(HID0, hid0);
 
   if ((hid0 & HID0_DCE) != 0) {
     rtems_cache_flush_multiple_data_lines(mem_begin, mem_size);

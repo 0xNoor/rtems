@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsEventReqSendReceive
+ * @ingroup RtemsEventReqSendReceive
  */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -60,10 +60,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsEventReqSendReceive \
- *   spec:/rtems/event/req/send-receive
+ * @defgroup RtemsEventReqSendReceive spec:/rtems/event/req/send-receive
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidation0
+ * @ingroup TestsuitesValidation0
  *
  * @{
  */

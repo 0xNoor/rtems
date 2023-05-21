@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsPartReqCreate
+ * @ingroup RtemsPartReqCreate
  */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -61,9 +61,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsPartReqCreate spec:/rtems/part/req/create
+ * @defgroup RtemsPartReqCreate spec:/rtems/part/req/create
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @{
  */

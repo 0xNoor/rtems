@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsRatemonValIdent
+ * @ingroup RtemsRatemonValIdent
  */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,16 +57,16 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsRatemonValIdent spec:/rtems/ratemon/val/ident
+ * @defgroup RtemsRatemonValIdent spec:/rtems/ratemon/val/ident
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @brief Test the rtems_rate_monotonic_ident() directive.
  *
  * This test case performs the following actions:
  *
  * - Run the generic object identification tests for Classic API rate monotonic
- *   class objects defined by /rtems/req/ident-local.
+ *   class objects defined by spec:/rtems/req/ident-local.
  *
  * @{
  */
@@ -83,7 +83,7 @@ static rtems_status_code ClassicRatemonIdentAction(
 
 /**
  * @brief Run the generic object identification tests for Classic API rate
- *   monotonic class objects defined by /rtems/req/ident-local.
+ *   monotonic class objects defined by spec:/rtems/req/ident-local.
  */
 static void RtemsRatemonValIdent_Action_0( void )
 {

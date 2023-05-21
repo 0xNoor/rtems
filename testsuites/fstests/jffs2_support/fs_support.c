@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 
 /*
- * Copyright (c) 2013 embedded brains GmbH.  All rights reserved.
+ * Copyright (c) 2013 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -163,7 +163,7 @@ void test_shutdown_filesystem(void)
 
 #define CONFIGURE_MAXIMUM_FILE_DESCRIPTORS 40
 
-#define CONFIGURE_MAXIMUM_TASKS 1
+#define CONFIGURE_MAXIMUM_TASKS 2
 
 #define CONFIGURE_INIT_TASK_STACK_SIZE (32 * 1024)
 #define CONFIGURE_INIT_TASK_ATTRIBUTES RTEMS_FLOATING_POINT

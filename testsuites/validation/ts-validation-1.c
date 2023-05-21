@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidation1
+ * @ingroup TestsuitesValidation1
  */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,9 +55,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesValidation1 spec:/testsuites/validation-1
+ * @defgroup TestsuitesValidation1 spec:/testsuites/validation-1
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This general purpose validation test suite provides enough resources
  *   to run basic tests for all specified managers and functions.
@@ -68,7 +68,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "Validation1";
+const char rtems_test_name[] = "TestsuitesValidation1";
 
 #define CONFIGURE_MAXIMUM_PROCESSORS 5
 

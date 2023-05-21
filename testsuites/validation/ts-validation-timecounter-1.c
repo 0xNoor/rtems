@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationTimecounter1
+ * @ingroup TestsuitesValidationTimecounter1
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,10 +55,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesValidationTimecounter1 \
+ * @defgroup TestsuitesValidationTimecounter1 \
  *   spec:/testsuites/validation-timecounter-1
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This validation test suite is intended test cases related to the use
  *   of timecouters.  The Clock Driver is enabled.
@@ -66,7 +66,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "ValidationTimecounter1";
+const char rtems_test_name[] = "TestsuitesValidationTimecounter1";
 
 #define CONFIGURE_MAXIMUM_PROCESSORS 4
 

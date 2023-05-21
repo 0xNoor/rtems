@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -63,7 +63,7 @@ void bsp_start_hook_0(void)
     SCB_EnableDCache();
   }
 
-  _ARMV7M_MPU_Setup(stm32h7_config_mpu_region, stm32h7_config_mpu_region_count);
+  _ARMV7M_MPU_Setup(ARMV7M_MPU_CTRL_DEFAULT, stm32h7_config_mpu_region, stm32h7_config_mpu_region_count);
 #endif
 }
 

@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsMessageValPerf
+ * @ingroup RtemsMessageValPerf
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,9 +59,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsMessageValPerf spec:/rtems/message/val/perf
+ * @defgroup RtemsMessageValPerf spec:/rtems/message/val/perf
  *
- * @ingroup RTEMSTestSuiteTestsuitesPerformanceNoClock0
+ * @ingroup TestsuitesPerformanceNoClock0
  *
  * @brief This test case provides a context to run @ref RTEMSAPIClassicMessage
  *   performance tests.
@@ -121,15 +121,17 @@ static RtemsMessageValPerf_Context
 
 #define MAXIMUM_MESSAGE_SIZE 8
 
-typedef RtemsMessageValPerf_Context Context;
+#define EVENT_END RTEMS_EVENT_0
 
-typedef enum {
-  EVENT_END = RTEMS_EVENT_0,
-  EVENT_SEND = RTEMS_EVENT_1,
-  EVENT_SEND_END = RTEMS_EVENT_2,
-  EVENT_RECEIVE = RTEMS_EVENT_3,
-  EVENT_RECEIVE_END = RTEMS_EVENT_4
-} Event;
+#define EVENT_SEND RTEMS_EVENT_1
+
+#define EVENT_SEND_END RTEMS_EVENT_2
+
+#define EVENT_RECEIVE RTEMS_EVENT_3
+
+#define EVENT_RECEIVE_END RTEMS_EVENT_4
+
+typedef RtemsMessageValPerf_Context Context;
 
 static RTEMS_MESSAGE_QUEUE_BUFFER( MAXIMUM_MESSAGE_SIZE )
   storage_area[ MAXIMUM_PENDING_MESSAGES ];
@@ -277,6 +279,13 @@ static T_fixture RtemsMessageValPerf_Fixture = {
 };
 
 /**
+ * @defgroup RtemsMessageReqPerfReceiveTry \
+ *   spec:/rtems/message/req/perf-receive-try
+ *
+ * @{
+ */
+
+/**
  * @brief Try to receive a message.
  */
 static void RtemsMessageReqPerfReceiveTry_Body(
@@ -332,6 +341,15 @@ static bool RtemsMessageReqPerfReceiveTry_Teardown_Wrap(
   ctx = arg;
   return RtemsMessageReqPerfReceiveTry_Teardown( ctx, delta, tic, toc, retry );
 }
+
+/** @} */
+
+/**
+ * @defgroup RtemsMessageReqPerfReceiveWaitForever \
+ *   spec:/rtems/message/req/perf-receive-wait-forever
+ *
+ * @{
+ */
 
 /**
  * @brief Schedule a message send.
@@ -420,6 +438,15 @@ static bool RtemsMessageReqPerfReceiveWaitForever_Teardown_Wrap(
   );
 }
 
+/** @} */
+
+/**
+ * @defgroup RtemsMessageReqPerfReceiveWaitTimed \
+ *   spec:/rtems/message/req/perf-receive-wait-timed
+ *
+ * @{
+ */
+
 /**
  * @brief Schedule a message send.
  */
@@ -507,6 +534,14 @@ static bool RtemsMessageReqPerfReceiveWaitTimed_Teardown_Wrap(
   );
 }
 
+/** @} */
+
+/**
+ * @defgroup RtemsMessageReqPerfSend spec:/rtems/message/req/perf-send
+ *
+ * @{
+ */
+
 /**
  * @brief Send a message.
  */
@@ -564,6 +599,15 @@ static bool RtemsMessageReqPerfSend_Teardown_Wrap(
   ctx = arg;
   return RtemsMessageReqPerfSend_Teardown( ctx, delta, tic, toc, retry );
 }
+
+/** @} */
+
+/**
+ * @defgroup RtemsMessageReqPerfSendOther \
+ *   spec:/rtems/message/req/perf-send-other
+ *
+ * @{
+ */
 
 /**
  * @brief Let the worker wait on the message queue.
@@ -639,7 +683,16 @@ static bool RtemsMessageReqPerfSendOther_Teardown_Wrap(
   return RtemsMessageReqPerfSendOther_Teardown( ctx, delta, tic, toc, retry );
 }
 
+/** @} */
+
 #if defined(RTEMS_SMP)
+/**
+ * @defgroup RtemsMessageReqPerfSendOtherCpu \
+ *   spec:/rtems/message/req/perf-send-other-cpu
+ *
+ * @{
+ */
+
 /**
  * @brief Move worker to scheduler B.
  */
@@ -741,7 +794,16 @@ static void RtemsMessageReqPerfSendOtherCpu_Cleanup(
 {
   SetScheduler( ctx->worker_id, SCHEDULER_A_ID, PRIO_HIGH );
 }
+
+/** @} */
 #endif
+
+/**
+ * @defgroup RtemsMessageReqPerfSendPreempt \
+ *   spec:/rtems/message/req/perf-send-preempt
+ *
+ * @{
+ */
 
 /**
  * @brief Let the worker wait on the message queue.
@@ -822,6 +884,8 @@ static bool RtemsMessageReqPerfSendPreempt_Teardown_Wrap(
     retry
   );
 }
+
+/** @} */
 
 /**
  * @fn void T_case_body_RtemsMessageValPerf( void )

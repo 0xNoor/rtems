@@ -9,7 +9,7 @@
  */
 
 /*
- * Copyright (C) 2009, 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2009, 2021 embedded brains GmbH & Co. KG
  * Copyright (C) 1988, 2017 On-Line Applications Research Corporation (OAR)
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,12 +62,12 @@
 #include <sys/cpuset.h>
 #include <rtems/rtems/modes.h>
 #include <rtems/score/cpuopts.h>
-#include <rtems/score/mppkt.h>
 #include <rtems/score/object.h>
 #include <rtems/score/watchdogticks.h>
 
 #if defined(RTEMS_MULTIPROCESSING)
   #include <rtems/score/mpci.h>
+  #include <rtems/score/mppkt.h>
 #endif
 
 #ifdef __cplusplus

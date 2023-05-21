@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsRatemonReqTimeout
+ * @ingroup RtemsRatemonReqTimeout
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -60,11 +60,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsRatemonReqTimeout \
- *   spec:/rtems/ratemon/req/timeout
+ * @defgroup RtemsRatemonReqTimeout spec:/rtems/ratemon/req/timeout
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
- * @ingroup RTEMSTestSuiteTestsuitesValidationOneCpu0
+ * @ingroup TestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationOneCpu0
  *
  * @{
  */
@@ -281,13 +280,13 @@ static const char * const * const RtemsRatemonReqTimeout_PreDesc[] = {
   NULL
 };
 
-typedef RtemsRatemonReqTimeout_Context Context;
+#define EVENT_RESET RTEMS_EVENT_0
 
-typedef enum {
-  EVENT_RESET = RTEMS_EVENT_0,
-  EVENT_PERIOD_WAIT = RTEMS_EVENT_1,
-  EVENT_PERIOD_OTHER = RTEMS_EVENT_2
-} Event;
+#define EVENT_PERIOD_WAIT RTEMS_EVENT_1
+
+#define EVENT_PERIOD_OTHER RTEMS_EVENT_2
+
+typedef RtemsRatemonReqTimeout_Context Context;
 
 static void Tick( void *arg )
 {

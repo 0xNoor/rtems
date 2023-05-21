@@ -5,24 +5,28 @@ actions:
 - env-append: null
 build-type: option
 copyrights:
-- Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+- Copyright (C) 2020 embedded brains GmbH & Co. KG
 default:
 - enabled-by: riscv/noel64imafdc
   value:
   - -march=rv64imafdc
   - -mabi=lp64d
+  - -mcmodel=medany
 - enabled-by: riscv/noel64imafd
   value:
   - -march=rv64imafd
   - -mabi=lp64d
+  - -mcmodel=medany
 - enabled-by: riscv/noel64imac
   value:
   - -march=rv64imac
   - -mabi=lp64
+  - -mcmodel=medany
 - enabled-by: []
   value:
   - -march=rv64im
   - -mabi=lp64
+  - -mcmodel=medany
 - enabled-by: riscv/noel32imafd
   value:
   - -march=rv32imafd

@@ -37,6 +37,8 @@ links:
 - role: build-dependency
   uid: optintcbaseaddress
 - role: build-dependency
+  uid: optmaxuarts
+- role: build-dependency
   uid: optramlen
 - role: build-dependency
   uid: optspibaseaddress
@@ -48,6 +50,14 @@ links:
   uid: opttimerfrequency
 - role: build-dependency
   uid: optuartlitebaseaddress
+- role: build-dependency
+  uid: optuseuart
+- role: build-dependency
+  uid: optuartirq
+- role: build-dependency
+  uid: optuartirq
+- role: build-dependency
+  uid: optconsoleuart
 - role: build-dependency
   uid: optusefdt
 - role: build-dependency
@@ -62,6 +72,10 @@ links:
   uid: linkcmds
 - role: build-dependency
   uid: ../../bspopts
+- role: build-dependency
+  uid: ../../optfdtuboot
+- role: build-dependency
+  uid: ../../optfdtmxsz
 type: build
 use-after: []
 use-before: []

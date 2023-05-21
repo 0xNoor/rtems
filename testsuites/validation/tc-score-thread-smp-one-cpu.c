@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreThreadValSmpOneCpu
+ * @ingroup ScoreThreadValSmpOneCpu
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,10 +59,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseScoreThreadValSmpOneCpu \
- *   spec:/score/thread/val/smp-one-cpu
+ * @defgroup ScoreThreadValSmpOneCpu spec:/score/thread/val/smp-one-cpu
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationSmpOneCpu0
+ * @ingroup TestsuitesValidationSmpOneCpu0
  *
  * @brief Tests SMP-specific thread behaviour using only one processor and a
  *   uniprocessor scheduler.
@@ -98,11 +97,9 @@ typedef struct {
 static ScoreThreadValSmpOneCpu_Context
   ScoreThreadValSmpOneCpu_Instance;
 
-typedef ScoreThreadValSmpOneCpu_Context Context;
+#define EVENT_COUNT RTEMS_EVENT_0
 
-typedef enum {
-  EVENT_COUNT = RTEMS_EVENT_0
-} Event;
+typedef ScoreThreadValSmpOneCpu_Context Context;
 
 static void WorkerTask( rtems_task_argument arg )
 {

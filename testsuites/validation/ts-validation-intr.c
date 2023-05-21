@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationIntr
+ * @ingroup TestsuitesValidationIntr
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,10 +55,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesValidationIntr \
- *   spec:/testsuites/validation-intr
+ * @defgroup TestsuitesValidationIntr spec:/testsuites/validation-intr
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This validation test suite provides enough resources to run tests for
  *   the interrupt controller related directives of the @ref
@@ -70,7 +69,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "ValidationIntr";
+const char rtems_test_name[] = "TestsuitesValidationIntr";
 
 #define CONFIGURE_MAXIMUM_PROCESSORS 5
 

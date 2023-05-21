@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationOneCpu1
+ * @ingroup TestsuitesValidationOneCpu1
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,10 +57,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesValidationOneCpu1 \
- *   spec:/testsuites/validation-one-cpu-1
+ * @defgroup TestsuitesValidationOneCpu1 spec:/testsuites/validation-one-cpu-1
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This general purpose validation test suite provides enough resources
  *   to run basic tests with exactly one processor and without a Clock Driver.
@@ -71,7 +70,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "ValidationOneCpu1";
+const char rtems_test_name[] = "TestsuitesValidationOneCpu1";
 
 #define CONFIGURE_APPLICATION_DOES_NOT_NEED_CLOCK_DRIVER
 

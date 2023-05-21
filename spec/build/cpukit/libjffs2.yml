@@ -3,7 +3,7 @@ build-type: library
 cflags:
 - -Wno-pointer-sign
 copyrights:
-- Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+- Copyright (C) 2020 embedded brains GmbH & Co. KG
 cppflags: []
 cxxflags: []
 enabled-by: true
@@ -33,6 +33,7 @@ source:
 - cpukit/libfs/src/jffs2/src/read.c
 - cpukit/libfs/src/jffs2/src/readinode.c
 - cpukit/libfs/src/jffs2/src/scan.c
+- cpukit/libfs/src/jffs2/src/wbuf.c
 - cpukit/libfs/src/jffs2/src/write.c
 target: jffs2
 type: build

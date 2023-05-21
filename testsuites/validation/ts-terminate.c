@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesTerminate
+ * @ingroup TestsuitesTerminate
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,9 +57,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesTerminate spec:/testsuites/terminate
+ * @defgroup TestsuitesTerminate spec:/testsuites/terminate
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This validation test suite contains a test case for the system
  *   termination procedure.
@@ -67,7 +67,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "Terminate";
+const char rtems_test_name[] = "TestsuitesTerminate";
 
 #define CONFIGURE_MAXIMUM_PROCESSORS 2
 

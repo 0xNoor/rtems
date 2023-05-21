@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,10 +55,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesValidationNoClock0 \
+ * @defgroup TestsuitesValidationNoClock0 \
  *   spec:/testsuites/validation-no-clock-0
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This general purpose validation test suite provides enough resources
  *   to run basic tests without a Clock Driver for all specified managers and
@@ -70,7 +70,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "ValidationNoClock0";
+const char rtems_test_name[] = "TestsuitesValidationNoClock0";
 
 #define CONFIGURE_MAXIMUM_PROCESSORS 5
 

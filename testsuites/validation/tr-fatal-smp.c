@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreSmpValFatal
+ * @ingroup ScoreSmpValFatal
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -64,9 +64,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseScoreSmpValFatal spec:/score/smp/val/fatal
+ * @defgroup ScoreSmpValFatal spec:/score/smp/val/fatal
  *
- * @ingroup RTEMSTestSuiteTestsuitesFatalSmp
+ * @ingroup TestsuitesFatalSmp
  *
  * @brief Tests four fatal errors.
  *

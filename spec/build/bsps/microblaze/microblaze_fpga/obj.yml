@@ -15,6 +15,7 @@ install:
   source:
   - bsps/microblaze/microblaze_fpga/include/bsp/irq.h
   - bsps/microblaze/microblaze_fpga/include/bsp/jffs2_qspi.h
+  - bsps/microblaze/microblaze_fpga/include/bsp/microblaze-gpio.h
   - bsps/microblaze/include/bsp/microblaze-fdt-support.h
   - bsps/microblaze/include/common/xil_types.h
   - bsps/microblaze/include/dev/serial/uartlite.h
@@ -25,6 +26,7 @@ source:
 - bsps/microblaze/microblaze_fpga/console/console-io.c
 - bsps/microblaze/microblaze_fpga/console/debug-io.c
 - bsps/microblaze/microblaze_fpga/fs/jffs2_qspi.c
+- bsps/microblaze/microblaze_fpga/gpio/microblaze-gpio.c
 - bsps/microblaze/microblaze_fpga/irq/irq.c
 - bsps/microblaze/microblaze_fpga/start/_debug_sw_break_handler.S
 - bsps/microblaze/microblaze_fpga/start/_exception_handler.S
@@ -36,6 +38,7 @@ source:
 - bsps/microblaze/microblaze_fpga/start/microblaze_enable_icache.S
 - bsps/microblaze/microblaze_fpga/start/microblaze_invalidate_dcache.S
 - bsps/microblaze/microblaze_fpga/start/microblaze_invalidate_icache.S
+- bsps/microblaze/microblaze_fpga/start/microblaze_invalidate_dcache_range.S
 - bsps/microblaze/shared/dev/serial/uartlite.c
 - bsps/microblaze/shared/dev/serial/uartlite_l.c
 - bsps/microblaze/shared/fdt/microblaze-fdt-support.c
@@ -44,7 +47,6 @@ source:
 - bsps/shared/dev/cpucounter/cpucounterfrequency.c
 - bsps/shared/dev/cpucounter/cpucounterread.c
 - bsps/shared/dev/getentropy/getentropy-cpucounter.c
-- bsps/shared/dev/serial/console-termios-init.c
 - bsps/shared/dev/serial/console-termios.c
 - bsps/shared/irq/irq-default-handler.c
 - bsps/shared/start/bspfatal-default.c

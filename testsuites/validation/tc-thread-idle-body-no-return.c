@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreThreadValIdleBodyNoReturn
+ * @ingroup ScoreThreadValIdleBodyNoReturn
  */
 
 /*
- * Copyright (C) 2022 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2022 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,10 +59,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseScoreThreadValIdleBodyNoReturn \
+ * @defgroup ScoreThreadValIdleBodyNoReturn \
  *   spec:/score/thread/val/idle-body-no-return
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidation0
+ * @ingroup TestsuitesValidation0
  *
  * @brief Tests thread idle body behaviour.
  *

@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationSmpOnly0
+ * @ingroup TestsuitesValidationSmpOnly0
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,10 +55,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesValidationSmpOnly0 \
+ * @defgroup TestsuitesValidationSmpOnly0 \
  *   spec:/testsuites/validation-smp-only-0
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This test suite for SMP-only test cases provides enough resources to
  *   run basic tests for all specified managers and functions.
@@ -69,7 +69,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "ValidationSMPOnly0";
+const char rtems_test_name[] = "TestsuitesValidationSmpOnly0";
 
 #define CONFIGURE_MAXIMUM_PROCESSORS 5
 

@@ -3,12 +3,14 @@
 /**
  * @file
  *
+ * @ingroup RTEMSImplFreeBSDKernel
+ *
  * @brief This header file provides type definitions for the kernel space
  *   (_KERNEL is defined before including <sys/types.h>).
  */
 
 /*
- * Copyright (C) 2016 embedded brains GmbH
+ * Copyright (C) 2016 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -32,9 +34,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if !defined(_SYS_TYPES_H) || !defined(_KERNEL)
-#error "must be included via <sys/types.h> in kernel space"
-#endif
+#if defined(_SYS_TYPES_H) && defined(_KERNEL)
 
 #include <stdbool.h>
 
@@ -42,3 +42,7 @@ typedef	int		boolean_t;
 typedef	struct device	*device_t;
 typedef	char		vm_memattr_t;
 typedef	struct vm_page	*vm_page_t;
+
+#else /* !_SYS_TYPES_H || !_KERNEL */
+#error "must be included via <sys/types.h> in kernel space"
+#endif /* _SYS_TYPES_H && _KERNEL */

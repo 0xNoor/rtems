@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseBspReqInterruptHandlerDispatchUnchecked
+ * @ingroup BspReqInterruptHandlerDispatchUnchecked
  */
 
 /*
- * Copyright (C) 2021, 2023 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021, 2023 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -60,10 +60,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseBspReqInterruptHandlerDispatchUnchecked \
+ * @defgroup BspReqInterruptHandlerDispatchUnchecked \
  *   spec:/bsp/req/interrupt-handler-dispatch-unchecked
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationIntr
+ * @ingroup TestsuitesValidationIntr
  *
  * @{
  */

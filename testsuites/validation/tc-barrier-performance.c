@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsBarrierValPerf
+ * @ingroup RtemsBarrierValPerf
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,9 +59,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsBarrierValPerf spec:/rtems/barrier/val/perf
+ * @defgroup RtemsBarrierValPerf spec:/rtems/barrier/val/perf
  *
- * @ingroup RTEMSTestSuiteTestsuitesPerformanceNoClock0
+ * @ingroup TestsuitesPerformanceNoClock0
  *
  * @brief This test case provides a context to run @ref RTEMSAPIClassicBarrier
  *   performance tests.
@@ -160,6 +160,13 @@ static T_fixture RtemsBarrierValPerf_Fixture = {
 };
 
 /**
+ * @defgroup RtemsBarrierReqPerfReleaseAuto \
+ *   spec:/rtems/barrier/req/perf-release-auto
+ *
+ * @{
+ */
+
+/**
  * @brief Create an automatic release barrier.
  */
 static void RtemsBarrierReqPerfReleaseAuto_Prepare(
@@ -244,7 +251,16 @@ static void RtemsBarrierReqPerfReleaseAuto_Cleanup(
   T_rsc_success( sc );
 }
 
+/** @} */
+
 #if defined(RTEMS_SMP)
+/**
+ * @defgroup RtemsBarrierReqPerfReleaseAutoOtherCpu \
+ *   spec:/rtems/barrier/req/perf-release-auto-other-cpu
+ *
+ * @{
+ */
+
 /**
  * @brief Create an automatic release barrier.  Create and start a worker task.
  */
@@ -341,7 +357,16 @@ static void RtemsBarrierReqPerfReleaseAutoOtherCpu_Cleanup(
   sc = rtems_barrier_delete( ctx->barrier_id );
   T_rsc_success( sc );
 }
+
+/** @} */
 #endif
+
+/**
+ * @defgroup RtemsBarrierReqPerfReleaseManual \
+ *   spec:/rtems/barrier/req/perf-release-manual
+ *
+ * @{
+ */
 
 /**
  * @brief Create a manual release barrier.  Create and start a worker task.
@@ -456,6 +481,15 @@ static void RtemsBarrierReqPerfReleaseManual_Cleanup(
   RestoreRunnerPriority();
 }
 
+/** @} */
+
+/**
+ * @defgroup RtemsBarrierReqPerfReleaseManualPreempt \
+ *   spec:/rtems/barrier/req/perf-release-manual-preempt
+ *
+ * @{
+ */
+
 /**
  * @brief Create a manual release barrier.  Create and start a worker task.
  */
@@ -554,6 +588,8 @@ static void RtemsBarrierReqPerfReleaseManualPreempt_Cleanup(
 
   RestoreRunnerPriority();
 }
+
+/** @} */
 
 /**
  * @fn void T_case_body_RtemsBarrierValPerf( void )

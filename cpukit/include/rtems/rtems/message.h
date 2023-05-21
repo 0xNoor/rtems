@@ -9,7 +9,7 @@
  */
 
 /*
- * Copyright (C) 2020, 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020, 2021 embedded brains GmbH & Co. KG
  * Copyright (C) 1988, 2008 On-Line Applications Research Corporation (OAR)
  *
  * Redistribution and use in source and binary forms, with or without
@@ -288,7 +288,8 @@ rtems_status_code rtems_message_queue_create(
  * @brief Constructs a message queue from the specified the message queue
  *   configuration.
  *
- * @param config is the message queue configuration.
+ * @param config is the pointer to an rtems_message_queue_config object.  It
+ *   configures the message queue.
  *
  * @param[out] id is the pointer to an ::rtems_id object.  When the directive
  *   call is successful, the identifier of the constructed message queue will

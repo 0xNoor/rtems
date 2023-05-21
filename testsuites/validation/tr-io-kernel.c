@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsIoValKernel
+ * @ingroup RtemsIoValKernel
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,9 +59,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsIoValKernel spec:/rtems/io/val/kernel
+ * @defgroup RtemsIoValKernel spec:/rtems/io/val/kernel
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationIoKernel
+ * @ingroup TestsuitesValidationIoKernel
  *
  * @brief Tests the functions referenced by BSP_output_char and BSP_poll_char.
  *

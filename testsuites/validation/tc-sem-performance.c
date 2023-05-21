@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsSemValPerf
+ * @ingroup RtemsSemValPerf
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,9 +59,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsSemValPerf spec:/rtems/sem/val/perf
+ * @defgroup RtemsSemValPerf spec:/rtems/sem/val/perf
  *
- * @ingroup RTEMSTestSuiteTestsuitesPerformanceNoClock0
+ * @ingroup TestsuitesPerformanceNoClock0
  *
  * @brief This test case provides a context to run @ref RTEMSAPIClassicSem
  *   performance tests.
@@ -112,15 +112,17 @@ typedef struct {
 static RtemsSemValPerf_Context
   RtemsSemValPerf_Instance;
 
-typedef RtemsSemValPerf_Context Context;
+#define EVENT_END RTEMS_EVENT_0
 
-typedef enum {
-  EVENT_END = RTEMS_EVENT_0,
-  EVENT_OBTAIN = RTEMS_EVENT_1,
-  EVENT_OBTAIN_END = RTEMS_EVENT_2,
-  EVENT_RELEASE = RTEMS_EVENT_3,
-  EVENT_RELEASE_END = RTEMS_EVENT_4
-} Event;
+#define EVENT_OBTAIN RTEMS_EVENT_1
+
+#define EVENT_OBTAIN_END RTEMS_EVENT_2
+
+#define EVENT_RELEASE RTEMS_EVENT_3
+
+#define EVENT_RELEASE_END RTEMS_EVENT_4
+
+typedef RtemsSemValPerf_Context Context;
 
 static void Send( const Context *ctx, rtems_event_set events )
 {
@@ -236,6 +238,12 @@ static T_fixture RtemsSemValPerf_Fixture = {
 };
 
 /**
+ * @defgroup RtemsSemReqPerfMtxPiObtain spec:/rtems/sem/req/perf-mtx-pi-obtain
+ *
+ * @{
+ */
+
+/**
  * @brief Obtain the available mutex.
  */
 static void RtemsSemReqPerfMtxPiObtain_Body( RtemsSemValPerf_Context *ctx )
@@ -286,6 +294,15 @@ static bool RtemsSemReqPerfMtxPiObtain_Teardown_Wrap(
   ctx = arg;
   return RtemsSemReqPerfMtxPiObtain_Teardown( ctx, delta, tic, toc, retry );
 }
+
+/** @} */
+
+/**
+ * @defgroup RtemsSemReqPerfMtxPiRelease \
+ *   spec:/rtems/sem/req/perf-mtx-pi-release
+ *
+ * @{
+ */
 
 /**
  * @brief Obtain the mutex.
@@ -348,6 +365,15 @@ static bool RtemsSemReqPerfMtxPiRelease_Teardown_Wrap(
   ctx = arg;
   return RtemsSemReqPerfMtxPiRelease_Teardown( ctx, delta, tic, toc, retry );
 }
+
+/** @} */
+
+/**
+ * @defgroup RtemsSemReqPerfMtxPiReleaseOne \
+ *   spec:/rtems/sem/req/perf-mtx-pi-release-one
+ *
+ * @{
+ */
 
 /**
  * @brief Let one task wait on the mutex.
@@ -425,7 +451,16 @@ static bool RtemsSemReqPerfMtxPiReleaseOne_Teardown_Wrap(
   );
 }
 
+/** @} */
+
 #if defined(RTEMS_SMP)
+/**
+ * @defgroup RtemsSemReqPerfMtxPiReleaseOtherCpu \
+ *   spec:/rtems/sem/req/perf-mtx-pi-release-other-cpu
+ *
+ * @{
+ */
+
 /**
  * @brief Move worker to scheduler B.
  */
@@ -524,7 +559,16 @@ static void RtemsSemReqPerfMtxPiReleaseOtherCpu_Cleanup(
 {
   SetScheduler( ctx->worker_id, SCHEDULER_A_ID, PRIO_HIGH );
 }
+
+/** @} */
 #endif
+
+/**
+ * @defgroup RtemsSemReqPerfMtxPiReleasePreempt \
+ *   spec:/rtems/sem/req/perf-mtx-pi-release-preempt
+ *
+ * @{
+ */
 
 /**
  * @brief Let one task wait on the mutex.
@@ -603,6 +647,14 @@ static bool RtemsSemReqPerfMtxPiReleasePreempt_Teardown_Wrap(
   );
 }
 
+/** @} */
+
+/**
+ * @defgroup RtemsSemReqPerfMtxPiTry spec:/rtems/sem/req/perf-mtx-pi-try
+ *
+ * @{
+ */
+
 /**
  * @brief Make the mutex unavailable.
  */
@@ -664,6 +716,15 @@ static void RtemsSemReqPerfMtxPiTry_Cleanup( RtemsSemValPerf_Context *ctx )
 {
   Send( ctx, EVENT_RELEASE );
 }
+
+/** @} */
+
+/**
+ * @defgroup RtemsSemReqPerfMtxPiWaitForever \
+ *   spec:/rtems/sem/req/perf-mtx-pi-wait-forever
+ *
+ * @{
+ */
 
 /**
  * @brief Make the mutex unavailable.
@@ -749,6 +810,15 @@ static bool RtemsSemReqPerfMtxPiWaitForever_Teardown_Wrap(
   );
 }
 
+/** @} */
+
+/**
+ * @defgroup RtemsSemReqPerfMtxPiWaitTimed \
+ *   spec:/rtems/sem/req/perf-mtx-pi-wait-timed
+ *
+ * @{
+ */
+
 /**
  * @brief Make the mutex unavailable.
  */
@@ -822,6 +892,8 @@ static bool RtemsSemReqPerfMtxPiWaitTimed_Teardown_Wrap(
   ctx = arg;
   return RtemsSemReqPerfMtxPiWaitTimed_Teardown( ctx, delta, tic, toc, retry );
 }
+
+/** @} */
 
 /**
  * @fn void T_case_body_RtemsSemValPerf( void )

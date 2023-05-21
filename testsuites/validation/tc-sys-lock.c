@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseNewlibValSysLock
+ * @ingroup NewlibValSysLock
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -65,9 +65,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseNewlibValSysLock spec:/newlib/val/sys-lock
+ * @defgroup NewlibValSysLock spec:/newlib/val/sys-lock
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @brief Tests the <sys/lock.h> mutex directives.
  *

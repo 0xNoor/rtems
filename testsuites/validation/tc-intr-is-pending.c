@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsIntrReqIsPending
+ * @ingroup RtemsIntrReqIsPending
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -61,9 +61,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsIntrReqIsPending spec:/rtems/intr/req/is-pending
+ * @defgroup RtemsIntrReqIsPending spec:/rtems/intr/req/is-pending
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationIntr
+ * @ingroup TestsuitesValidationIntr
  *
  * @{
  */

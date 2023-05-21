@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsEventValPerf
+ * @ingroup RtemsEventValPerf
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,9 +59,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsEventValPerf spec:/rtems/event/val/perf
+ * @defgroup RtemsEventValPerf spec:/rtems/event/val/perf
  *
- * @ingroup RTEMSTestSuiteTestsuitesPerformanceNoClock0
+ * @ingroup TestsuitesPerformanceNoClock0
  *
  * @brief This test case provides a context to run @ref RTEMSAPIClassicEvent
  *   performance tests.
@@ -107,12 +107,11 @@ typedef struct {
 static RtemsEventValPerf_Context
   RtemsEventValPerf_Instance;
 
-typedef RtemsEventValPerf_Context Context;
+#define EVENT_END RTEMS_EVENT_0
 
-typedef enum {
-  EVENT_END = RTEMS_EVENT_0,
-  EVENT_OTHER = RTEMS_EVENT_1
-} Event;
+#define EVENT_OTHER RTEMS_EVENT_1
+
+typedef RtemsEventValPerf_Context Context;
 
 static void Send( const Context *ctx, rtems_event_set events )
 {
@@ -211,6 +210,12 @@ static T_fixture RtemsEventValPerf_Fixture = {
 };
 
 /**
+ * @defgroup RtemsEventReqPerfIsrPreempt spec:/rtems/event/req/perf-isr-preempt
+ *
+ * @{
+ */
+
+/**
  * @brief Send two events from with interrupt context.  Satisfy the event
  *   condition.
  */
@@ -259,6 +264,14 @@ static bool RtemsEventReqPerfIsrPreempt_Teardown_Wrap(
   ctx = arg;
   return RtemsEventReqPerfIsrPreempt_Teardown( ctx, delta, tic, toc, retry );
 }
+
+/** @} */
+
+/**
+ * @defgroup RtemsEventReqPerfOther spec:/rtems/event/req/perf-other
+ *
+ * @{
+ */
 
 /**
  * @brief Lower the worker priority.
@@ -325,7 +338,15 @@ static bool RtemsEventReqPerfOther_Teardown_Wrap(
   return RtemsEventReqPerfOther_Teardown( ctx, delta, tic, toc, retry );
 }
 
+/** @} */
+
 #if defined(RTEMS_SMP)
+/**
+ * @defgroup RtemsEventReqPerfOtherCpu spec:/rtems/event/req/perf-other-cpu
+ *
+ * @{
+ */
+
 /**
  * @brief Move worker to scheduler B.
  */
@@ -392,7 +413,16 @@ static void RtemsEventReqPerfOtherCpu_Cleanup( RtemsEventValPerf_Context *ctx )
 {
   SetScheduler( ctx->worker_id, SCHEDULER_A_ID, PRIO_HIGH );
 }
+
+/** @} */
 #endif
+
+/**
+ * @defgroup RtemsEventReqPerfOtherNotSatisfied \
+ *   spec:/rtems/event/req/perf-other-not-satisfied
+ *
+ * @{
+ */
 
 /**
  * @brief Send an event.  Do not satisfy the event condition.
@@ -451,6 +481,15 @@ static bool RtemsEventReqPerfOtherNotSatisfied_Teardown_Wrap(
   );
 }
 
+/** @} */
+
+/**
+ * @defgroup RtemsEventReqPerfOtherPreempt \
+ *   spec:/rtems/event/req/perf-other-preempt
+ *
+ * @{
+ */
+
 /**
  * @brief Send two events.  Satisfy the event condition.
  */
@@ -502,6 +541,8 @@ static bool RtemsEventReqPerfOtherPreempt_Teardown_Wrap(
   ctx = arg;
   return RtemsEventReqPerfOtherPreempt_Teardown( ctx, delta, tic, toc, retry );
 }
+
+/** @} */
 
 /**
  * @fn void T_case_body_RtemsEventValPerf( void )

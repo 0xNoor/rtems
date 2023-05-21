@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesFatalStartOfMandatoryProcessorFailed
+ * @ingroup TestsuitesFatalStartOfMandatoryProcessorFailed
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -58,10 +58,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesFatalStartOfMandatoryProcessorFailed \
+ * @defgroup TestsuitesFatalStartOfMandatoryProcessorFailed \
  *   spec:/testsuites/fatal-start-of-mandatory-processor-failed
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This validation test suite contains a test case which triggers a
  *   fatal error during system initialization.
@@ -69,7 +69,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "FatalStartOfMandatoryProcessorFailed";
+const char rtems_test_name[] = "TestsuitesFatalStartOfMandatoryProcessorFailed";
 
 #define FATAL_SYSINIT_RUN ScoreSmpValFatalStartOfMandatoryProcessorFailed_Run
 

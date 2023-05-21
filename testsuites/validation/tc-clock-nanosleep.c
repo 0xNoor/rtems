@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseCReqClockNanosleep
+ * @ingroup CReqClockNanosleep
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -64,9 +64,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseCReqClockNanosleep spec:/c/req/clock-nanosleep
+ * @defgroup CReqClockNanosleep spec:/c/req/clock-nanosleep
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @{
  */
@@ -430,7 +430,7 @@ static void CReqClockNanosleep_Pre_RQTp_Prepare(
 
     case CReqClockNanosleep_Pre_RQTp_Null: {
       /*
-       * While the ``rqtp parameter is equal to NULL.
+       * While the ``rqtp`` parameter is equal to NULL.
        */
       ctx->rqtp = NULL;
       break;
@@ -543,7 +543,7 @@ static void CReqClockNanosleep_Pre_RMTp_Prepare(
 
     case CReqClockNanosleep_Pre_RMTp_Null: {
       /*
-       * While the ``rmtp parameter is equal to NULL.
+       * While the ``rmtp`` parameter is equal to NULL.
        */
       ctx->rmtp = NULL;
       break;

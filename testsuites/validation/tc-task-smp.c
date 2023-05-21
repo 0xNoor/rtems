@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsTaskValSmp
+ * @ingroup RtemsTaskValSmp
  */
 
 /*
- * Copyright (C) 2022 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2022 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -60,9 +60,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsTaskValSmp spec:/rtems/task/val/smp
+ * @defgroup RtemsTaskValSmp spec:/rtems/task/val/smp
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationSmpOnly0
+ * @ingroup TestsuitesValidationSmpOnly0
  *
  * @brief This test case collection provides SMP-specific validation test cases
  *   for requirements of the @ref RTEMSAPIClassicTasks.

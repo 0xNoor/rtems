@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsSemReqTimeout
+ * @ingroup RtemsSemReqTimeout
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -64,9 +64,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsSemReqTimeout spec:/rtems/sem/req/timeout
+ * @defgroup RtemsSemReqTimeout spec:/rtems/sem/req/timeout
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @{
  */
@@ -273,7 +273,7 @@ static void RtemsSemReqTimeout_Post_Action_Check(
     case RtemsSemReqTimeout_Post_Action_Timeout: {
       /*
        * The semaphore obtain timeout actions shall be done as specified by
-       * /score/tq/req/timeout.
+       * spec:/score/tq/req/timeout.
        */
       ctx->tq_ctx.wait = TQ_WAIT_TIMED;
       ScoreTqReqTimeout_Run( &ctx->tq_ctx );
@@ -283,7 +283,7 @@ static void RtemsSemReqTimeout_Post_Action_Check(
     case RtemsSemReqTimeout_Post_Action_TimeoutMrsP: {
       /*
        * The semaphore obtain timeout actions shall be done as specified by
-       * /score/tq/req/timeout-mrsp.
+       * spec:/score/tq/req/timeout-mrsp.
        */
       ctx->tq_ctx.wait = TQ_WAIT_TIMED;
       ScoreTqReqTimeoutMrsp_Run( &ctx->tq_ctx );
@@ -293,7 +293,7 @@ static void RtemsSemReqTimeout_Post_Action_Check(
     case RtemsSemReqTimeout_Post_Action_TimeoutPriorityInherit: {
       /*
        * The semaphore obtain timeout actions shall be done as specified by
-       * /score/tq/req/timeout-priority-inherit.
+       * spec:/score/tq/req/timeout-priority-inherit.
        */
       ctx->tq_ctx.wait = TQ_WAIT_FOREVER;
       ScoreTqReqTimeoutPriorityInherit_Run( &ctx->tq_ctx );

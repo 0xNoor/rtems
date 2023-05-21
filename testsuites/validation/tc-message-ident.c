@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsMessageValIdent
+ * @ingroup RtemsMessageValIdent
  */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,16 +57,16 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsMessageValIdent spec:/rtems/message/val/ident
+ * @defgroup RtemsMessageValIdent spec:/rtems/message/val/ident
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @brief Test the rtems_message_queue_ident() directive.
  *
  * This test case performs the following actions:
  *
  * - Run the generic object identification tests for Classic API message queue
- *   class objects defined by /rtems/req/ident.
+ *   class objects defined by spec:/rtems/req/ident.
  *
  * @{
  */
@@ -95,7 +95,7 @@ static rtems_status_code ClassicMessageIdentAction(
 
 /**
  * @brief Run the generic object identification tests for Classic API message
- *   queue class objects defined by /rtems/req/ident.
+ *   queue class objects defined by spec:/rtems/req/ident.
  */
 static void RtemsMessageValIdent_Action_0( void )
 {

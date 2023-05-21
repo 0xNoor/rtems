@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsSemValUni
+ * @ingroup RtemsSemValUni
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,9 +59,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsSemValUni spec:/rtems/sem/val/uni
+ * @defgroup RtemsSemValUni spec:/rtems/sem/val/uni
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationOneCpu0
+ * @ingroup TestsuitesValidationOneCpu0
  *
  * @brief Tests uniprocessor-specific semaphore behaviour.
  *

@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationAcfg0
+ * @ingroup TestsuitesValidationAcfg0
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -58,10 +58,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesValidationAcfg0 \
- *   spec:/testsuites/validation-acfg-0
+ * @defgroup TestsuitesValidationAcfg0 spec:/testsuites/validation-acfg-0
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This validation test suite is used to validate the default value of
  *   application configuration options taking the optional BSP provided
@@ -70,7 +69,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "ValidationAcfg0";
+const char rtems_test_name[] = "TestsuitesValidationAcfg0";
 
 #define CONFIGURE_IDLE_TASK_STORAGE_SIZE RTEMS_MINIMUM_STACK_SIZE
 

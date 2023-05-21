@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationTls1
+ * @ingroup TestsuitesValidationTls1
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,10 +55,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesValidationTls1 \
- *   spec:/testsuites/validation-tls-1
+ * @defgroup TestsuitesValidationTls1 spec:/testsuites/validation-tls-1
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This validation test suite contains test cases related to the
  *   thread-local storage support.
@@ -66,7 +65,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "ValidationTls1";
+const char rtems_test_name[] = "TestsuitesValidationTls1";
 
 #define CONFIGURE_IDLE_TASK_STORAGE_SIZE \
   ( RTEMS_MINIMUM_STACK_SIZE + 4096 )

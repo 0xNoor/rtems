@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesFatalSchedulerRequiresExactlyOneProcessor
+ * @ingroup TestsuitesFatalSchedulerRequiresExactlyOneProcessor
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -58,10 +58,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesFatalSchedulerRequiresExactlyOneProcessor \
+ * @defgroup TestsuitesFatalSchedulerRequiresExactlyOneProcessor \
  *   spec:/testsuites/fatal-scheduler-requires-exactly-one-processor
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This validation test suite uses an application configuration which
  *   triggers a fatal error during system initialization.
@@ -69,7 +69,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "FatalSchedulerRequiresExactlyOneProcessor";
+const char rtems_test_name[] = "TestsuitesFatalSchedulerRequiresExactlyOneProcessor";
 
 #define FATAL_SYSINIT_RUN \
   ScoreSmpValFatalSchedulerRequiresExactlyOneProcessor_Run

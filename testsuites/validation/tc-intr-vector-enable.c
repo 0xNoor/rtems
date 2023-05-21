@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsIntrReqVectorEnable
+ * @ingroup RtemsIntrReqVectorEnable
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -61,10 +61,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsIntrReqVectorEnable \
- *   spec:/rtems/intr/req/vector-enable
+ * @defgroup RtemsIntrReqVectorEnable spec:/rtems/intr/req/vector-enable
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationIntr
+ * @ingroup TestsuitesValidationIntr
  *
  * @{
  */
@@ -368,7 +367,7 @@ static void RtemsIntrReqVectorEnable_Pre_IsEnabled_Prepare(
     case RtemsIntrReqVectorEnable_Pre_IsEnabled_No: {
       /*
        * While the interrupt vector associated with the ``vector`` parameter is
-       * enabled.
+       * disabled.
        */
       /*
        * This pre-condition depends on the attributes of an interrupt vector,

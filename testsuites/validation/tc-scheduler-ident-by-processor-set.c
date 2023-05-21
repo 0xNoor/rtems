@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsSchedulerReqIdentByProcessorSet
+ * @ingroup RtemsSchedulerReqIdentByProcessorSet
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -60,10 +60,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsSchedulerReqIdentByProcessorSet \
+ * @defgroup RtemsSchedulerReqIdentByProcessorSet \
  *   spec:/rtems/scheduler/req/ident-by-processor-set
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @{
  */

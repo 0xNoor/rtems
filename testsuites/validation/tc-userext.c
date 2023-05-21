@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsUserextValUserext
+ * @ingroup RtemsUserextValUserext
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -62,10 +62,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsUserextValUserext \
- *   spec:/rtems/userext/val/userext
+ * @defgroup RtemsUserextValUserext spec:/rtems/userext/val/userext
  *
- * @ingroup RTEMSTestSuiteTestsuitesUserext
+ * @ingroup TestsuitesUserext
  *
  * @brief Tests the thread user extensions.
  *

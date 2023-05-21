@@ -1,17 +1,7 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 
-/**
- * @file
- *
- * @ingroup RTEMSScoreTOD
- *
- * @brief This source file contains the implementation of
- *   _TOD_Adjust().
- */
-
 /*
- *  COPYRIGHT (c) 1989-2014.
- *  On-Line Applications Research Corporation (OAR).
+ * Copyright (C) 2023 Karel Gardas
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -35,39 +25,22 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+#include <efi.h>
+#include <rtems/fb.h>
 
-#include <rtems/score/todimpl.h>
+int
+efi_init_graphic_output(int);
 
-Status_Control _TOD_Adjust(
-  const struct timespec *delta
-)
-{
-  ISR_lock_Context lock_context;
-  struct timespec  tod;
-  Status_Control   status;
+void
+efi_graphic_output_char(char);
 
-  /*
-   * Currently, RTEMS does the adjustment in one movement.
-   * Given interest, requirements, and sponsorship, a future
-   * enhancement would be to adjust the time in smaller increments
-   * at each clock tick. Until then, there is no outstanding
-   * adjustment.
-   */
+/* to support RPi based character output to framebuffer.
+ The functions are declared here in open in order to show if they
+ should not be moved including whole character output to FB somewhere
+ into bsps/shared. */
 
-  _TOD_Lock();
-  _TOD_Acquire( &lock_context );
-  _TOD_Get( &tod );
-  _Timespec_Add_to( &tod, delta );
-  status = _TOD_Is_valid_new_time_of_day( &tod );
+void
+rpi_get_var_screen_info(struct fb_var_screeninfo*);
 
-  if ( status == STATUS_SUCCESSFUL ) {
-    status = _TOD_Set( &tod, &lock_context );
-  }
-
-  _TOD_Unlock();
-
-  return status;
-}
+void
+rpi_get_fix_screen_info(struct fb_fix_screeninfo*);

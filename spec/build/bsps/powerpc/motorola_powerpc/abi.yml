@@ -5,7 +5,7 @@ actions:
 - env-append: null
 build-type: option
 copyrights:
-- Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+- Copyright (C) 2020 embedded brains GmbH & Co. KG
 default:
 - enabled-by: powerpc/qemuprep-altivec
   value:
@@ -17,7 +17,7 @@ default:
   - -mcpu=powerpc
   - -mmultiple
   - -mstrict-align
-- enabled-by: powerpc/mvme2307
+- enabled-by: [powerpc/mvme2307, powerpc/mvme2700]
   value:
   - -mcpu=604
   - -mmultiple

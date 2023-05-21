@@ -10,7 +10,7 @@
 /*
  *  Cache Manager
  *
- *  Copyright (C) 2014, 2018 embedded brains GmbH
+ *  Copyright (C) 2014, 2018 embedded brains GmbH & Co. KG
  *
  *  COPYRIGHT (c) 1989-1999.
  *  On-Line Applications Research Corporation (OAR).
@@ -318,6 +318,7 @@ static void smp_cache_inst_inv(void *arg)
 
 static void smp_cache_inst_inv_all(void *arg)
 {
+  (void) arg;
   _CPU_cache_invalidate_entire_instruction();
 }
 

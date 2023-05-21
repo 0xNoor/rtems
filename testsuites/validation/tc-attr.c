@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsAttrValAttr
+ * @ingroup RtemsAttrValAttr
  */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,9 +57,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsAttrValAttr spec:/rtems/attr/val/attr
+ * @defgroup RtemsAttrValAttr spec:/rtems/attr/val/attr
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @brief Tests the attribute constants of the Classic API.
  *
@@ -124,7 +124,7 @@
  *
  * - Check the value of RTEMS_DEFAULT_ATTRIBUTES.
  *
- *   - Check RTEMS_DEFAULT_ATTRIBUTES equals ``RTEMS_FIFO | RTEMS_LOCAL``.
+ *   - Check RTEMS_DEFAULT_ATTRIBUTES equals RTEMS_FIFO | RTEMS_LOCAL.
  *
  * @{
  */
@@ -324,7 +324,7 @@ static void RtemsAttrValAttr_Action_4( void )
   /* No action */
 
   /*
-   * Check RTEMS_DEFAULT_ATTRIBUTES equals ``RTEMS_FIFO | RTEMS_LOCAL``.
+   * Check RTEMS_DEFAULT_ATTRIBUTES equals RTEMS_FIFO | RTEMS_LOCAL.
    */
   T_step_eq_int(
     22,
