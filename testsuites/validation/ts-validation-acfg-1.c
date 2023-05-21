@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationAcfg1
+ * @ingroup TestsuitesValidationAcfg1
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,10 +59,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesValidationAcfg1 \
- *   spec:/testsuites/validation-acfg-1
+ * @defgroup TestsuitesValidationAcfg1 spec:/testsuites/validation-acfg-1
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This validation test suite is used to validate the default value of
  *   application configuration options where all optional BSP provided settings
@@ -71,7 +70,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "ValidationAcfg1";
+const char rtems_test_name[] = "TestsuitesValidationAcfg1";
 
 static void FatalExtension(
   rtems_fatal_source source,

@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesUnitNoClock0
+ * @ingroup TestsuitesUnitNoClock0
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,10 +55,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesUnitNoClock0 \
- *   spec:/testsuites/unit-no-clock-0
+ * @defgroup TestsuitesUnitNoClock0 spec:/testsuites/unit-no-clock-0
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesUnit
  *
  * @brief This general purpose unit test suite provides enough resources to run
  *   basic tests without a Clock Driver for all specified managers and
@@ -70,7 +69,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "UnitNoClock0";
+const char rtems_test_name[] = "TestsuitesUnitNoClock0";
 
 #define CONFIGURE_MAXIMUM_PROCESSORS 4
 

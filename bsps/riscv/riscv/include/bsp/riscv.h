@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 embedded brains GmbH
+ * Copyright (c) 2018 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -54,6 +54,10 @@ uint32_t riscv_get_hart_index_by_phandle(uint32_t phandle);
 
 #ifdef RISCV_ENABLE_HTIF_SUPPORT
 void htif_poweroff(void);
+#endif
+
+#if RISCV_ENABLE_KENDRYTE_K210_SUPPORT != 0
+uint32_t k210_get_frequency(void);
 #endif
 
 #ifdef __cplusplus

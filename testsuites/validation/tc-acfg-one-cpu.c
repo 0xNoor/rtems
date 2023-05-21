@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseAcfgValOneCpu
+ * @ingroup AcfgValOneCpu
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -61,9 +61,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseAcfgValOneCpu spec:/acfg/val/one-cpu
+ * @defgroup AcfgValOneCpu spec:/acfg/val/one-cpu
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationOneCpu0
+ * @ingroup TestsuitesValidationOneCpu0
  *
  * @brief Tests the effect of application configuration options.
  *
@@ -73,7 +73,7 @@
  *
  *   - Check that the CONFIGURE_MAXIMUM_PRIORITY application configuration
  *     option resulted in the expected system setting using
- *     /rtems/task/if/maximum-priority.
+ *     spec:/rtems/task/if/maximum-priority.
  *
  *   - Check that the Deterministic Priority Scheduler which was configured by
  *     the CONFIGURE_SCHEDULER_PRIORITY application configuration in the test
@@ -122,7 +122,7 @@ static void AcfgValOneCpu_Action_0( void )
   /*
    * Check that the CONFIGURE_MAXIMUM_PRIORITY application configuration option
    * resulted in the expected system setting using
-   * /rtems/task/if/maximum-priority.
+   * spec:/rtems/task/if/maximum-priority.
    */
   T_eq_u32( RTEMS_MAXIMUM_PRIORITY, 127 );
 

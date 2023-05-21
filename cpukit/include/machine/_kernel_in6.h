@@ -34,13 +34,13 @@
 /**
  * @file
  *
+ * @ingroup RTEMSImplFreeBSDKernel
+ *
  * @brief This header file provides IPv6 definitions for the kernel space
  *   (_KERNEL is defined before including <netinet6/in6.h>).
  */
 
-#if !defined(_NETINET6_IN6_H_) || !defined(_KERNEL)
-#error "must be included via <netinet6/in6.h> in kernel space"
-#endif
+#if defined(_NETINET6_IN6_H_) && defined(_KERNEL)
 
 /* XXX nonstandard */
 #define s6_addr8  __u6_addr.__u6_addr8
@@ -187,3 +187,7 @@ extern void addrsel_policy_init(void);
 #define	satosin6(sa)	((struct sockaddr_in6 *)(sa))
 #define	sin6tosa(sin6)	((struct sockaddr *)(sin6))
 #define	ifatoia6(ifa)	((struct in6_ifaddr *)(ifa))
+
+#else /* !_NETINET6_IN6_H_ || !_KERNEL */
+#error "must be included via <netinet6/in6.h> in kernel space"
+#endif /* _NETINET6_IN6_H_ && _KERNEL */

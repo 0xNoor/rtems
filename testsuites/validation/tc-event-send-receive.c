@@ -3,12 +3,12 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsEventValSendReceive
- * @ingroup RTEMSTestCaseRtemsEventValSystemSendReceive
+ * @ingroup RtemsEventValSendReceive
+ * @ingroup RtemsEventValSystemSendReceive
  */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -63,17 +63,16 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsEventValSendReceive \
- *   spec:/rtems/event/val/send-receive
+ * @defgroup RtemsEventValSendReceive spec:/rtems/event/val/send-receive
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidation0
+ * @ingroup TestsuitesValidation0
  *
  * @brief Tests the rtems_event_send() and rtems_event_receive() directives.
  *
  * This test case performs the following actions:
  *
  * - Run the event send and receive tests for the application event set defined
- *   by /rtems/event/req/send-receive.
+ *   by spec:/rtems/event/req/send-receive.
  *
  * @{
  */
@@ -106,7 +105,7 @@ static rtems_event_set GetPendingEvents( Thread_Control *thread )
 
 /**
  * @brief Run the event send and receive tests for the application event set
- *   defined by /rtems/event/req/send-receive.
+ *   defined by spec:/rtems/event/req/send-receive.
  */
 static void RtemsEventValSendReceive_Action_0( void )
 {
@@ -130,10 +129,10 @@ T_TEST_CASE( RtemsEventValSendReceive )
 /** @} */
 
 /**
- * @defgroup RTEMSTestCaseRtemsEventValSystemSendReceive \
+ * @defgroup RtemsEventValSystemSendReceive \
  *   spec:/rtems/event/val/system-send-receive
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidation0
+ * @ingroup TestsuitesValidation0
  *
  * @brief Tests the rtems_event_system_send() and rtems_event_system_receive()
  *   directives.
@@ -141,7 +140,7 @@ T_TEST_CASE( RtemsEventValSendReceive )
  * This test case performs the following actions:
  *
  * - Run the event send and receive tests for the system event set defined by
- *   /rtems/event/req/send-receive.
+ *   spec:/rtems/event/req/send-receive.
  *
  * @{
  */
@@ -179,7 +178,7 @@ static rtems_event_set GetPendingSystemEvents( Thread_Control *thread )
 
 /**
  * @brief Run the event send and receive tests for the system event set defined
- *   by /rtems/event/req/send-receive.
+ *   by spec:/rtems/event/req/send-receive.
  */
 static void RtemsEventValSystemSendReceive_Action_0( void )
 {

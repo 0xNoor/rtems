@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: BSD-2-Clause
 #
 # Copyright (C) 2020 Hesham Almatary <Hesham.Almatary@cl.cam.ac.uk>
-# Copyright (C) 2019, 2020 embedded brains GmbH (http://www.embedded-brains.de)
+# Copyright (C) 2019, 2020 embedded brains GmbH & Co. KG
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -214,14 +214,24 @@ class Item(object):
             self.prepare_configure(conf, cic)
             for p in self.links():
                 p.configure(conf, cic)
-            self.do_configure(conf, cic)
+            try:
+                self.do_configure(conf, cic)
+            except Exception as e:
+                raise type(e)(
+                    "Configuration error related to item spec:{}: {}".format(
+                        self.uid, str(e)))
 
     def build(self, bld, bic):
         if _is_enabled(bld.env.ENABLE, self.get_enabled_by()):
             bic = self.prepare_build(bld, bic)
             for p in self.links():
                 p.build(bld, bic)
-            self.do_build(bld, bic)
+            try:
+                self.do_build(bld, bic)
+            except Exception as e:
+                raise type(e)(
+                    "Build error related to item spec:{}: {}".format(
+                        self.uid, str(e)))
 
     def do_defaults(self, enabled):
         return

@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesFatalInitTaskConstructFailed
+ * @ingroup TestsuitesFatalInitTaskConstructFailed
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,10 +57,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesFatalInitTaskConstructFailed \
+ * @defgroup TestsuitesFatalInitTaskConstructFailed \
  *   spec:/testsuites/fatal-init-task-construct-failed
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This validation test suite contains a test case which triggers a
  *   fatal error during system initialization.
@@ -68,7 +68,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "FatalInitTaskConstructFailed";
+const char rtems_test_name[] = "TestsuitesFatalInitTaskConstructFailed";
 
 #define FATAL_SYSINIT_RUN AcfgValFatalInitTaskConstructFailed_Run
 

@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsBarrierValIdent
+ * @ingroup RtemsBarrierValIdent
  */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,16 +57,16 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsBarrierValIdent spec:/rtems/barrier/val/ident
+ * @defgroup RtemsBarrierValIdent spec:/rtems/barrier/val/ident
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @brief Test the rtems_barrier_ident() directive.
  *
  * This test case performs the following actions:
  *
  * - Run the generic object identification tests for Classic API partition
- *   class objects defined by /rtems/req/ident-local.
+ *   class objects defined by spec:/rtems/req/ident-local.
  *
  * @{
  */
@@ -83,7 +83,7 @@ static rtems_status_code ClassicBarrierIdentAction(
 
 /**
  * @brief Run the generic object identification tests for Classic API partition
- *   class objects defined by /rtems/req/ident-local.
+ *   class objects defined by spec:/rtems/req/ident-local.
  */
 static void RtemsBarrierValIdent_Action_0( void )
 {

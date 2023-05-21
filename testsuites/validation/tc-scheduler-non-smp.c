@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsSchedulerValNonSmp
+ * @ingroup RtemsSchedulerValNonSmp
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021, 2023 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,28 +57,31 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsSchedulerValNonSmp \
- *   spec:/rtems/scheduler/val/non-smp
+ * @defgroup RtemsSchedulerValNonSmp spec:/rtems/scheduler/val/non-smp
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNonSmp
+ * @ingroup TestsuitesValidationNonSmp
  *
  * @brief This test case collection provides validation test cases for non-SMP
  *   requirements of the @ref RTEMSAPIClassicScheduler.
  *
  * This test case performs the following actions:
  *
- * - Check that calling rtems_scheduler_get_processor() is a constant
+ * - Assert that rtems_scheduler_get_processor() is a constant expression which
+ *   evaluates to zero.
+ *
+ * - Check that calling rtems_scheduler_get_processor() returns zero.
+ *
+ * - Assert that rtems_scheduler_get_processor_maximum() is a constant
  *   expression which evaluates to zero.
  *
- * - Check that calling rtems_scheduler_get_processor_maximum() is a constant
- *   expression which evaluates to zero.
+ * - Check that calling rtems_scheduler_get_processor_maximum() returns one.
  *
  * @{
  */
 
 /**
- * @brief Check that calling rtems_scheduler_get_processor() is a constant
- *   expression which evaluates to zero.
+ * @brief Assert that rtems_scheduler_get_processor() is a constant expression
+ *   which evaluates to zero.
  */
 static void RtemsSchedulerValNonSmp_Action_0( void )
 {
@@ -86,15 +89,32 @@ static void RtemsSchedulerValNonSmp_Action_0( void )
 }
 
 /**
- * @brief Check that calling rtems_scheduler_get_processor_maximum() is a
- *   constant expression which evaluates to zero.
+ * @brief Check that calling rtems_scheduler_get_processor() returns zero.
  */
 static void RtemsSchedulerValNonSmp_Action_1( void )
+{
+  T_eq_u32( rtems_scheduler_get_processor(), 0 );
+}
+
+/**
+ * @brief Assert that rtems_scheduler_get_processor_maximum() is a constant
+ *   expression which evaluates to zero.
+ */
+static void RtemsSchedulerValNonSmp_Action_2( void )
 {
   RTEMS_STATIC_ASSERT(
     rtems_scheduler_get_processor_maximum() == 1,
     GET_PROCESSOR_MAXIMUM
   );
+}
+
+/**
+ * @brief Check that calling rtems_scheduler_get_processor_maximum() returns
+ *   one.
+ */
+static void RtemsSchedulerValNonSmp_Action_3( void )
+{
+  T_eq_u32( rtems_scheduler_get_processor_maximum(), 1 );
 }
 
 /**
@@ -104,6 +124,8 @@ T_TEST_CASE( RtemsSchedulerValNonSmp )
 {
   RtemsSchedulerValNonSmp_Action_0();
   RtemsSchedulerValNonSmp_Action_1();
+  RtemsSchedulerValNonSmp_Action_2();
+  RtemsSchedulerValNonSmp_Action_3();
 }
 
 /** @} */

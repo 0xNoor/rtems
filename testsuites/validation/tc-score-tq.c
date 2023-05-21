@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreTqValTq
+ * @ingroup ScoreTqValTq
  */
 
 /*
- * Copyright (C) 2022 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2022 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -58,9 +58,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseScoreTqValTq spec:/score/tq/val/tq
+ * @defgroup ScoreTqValTq spec:/score/tq/val/tq
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @brief Tests special thread queue behaviour.
  *

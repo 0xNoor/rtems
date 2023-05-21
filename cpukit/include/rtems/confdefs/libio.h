@@ -10,7 +10,7 @@
  */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -145,6 +145,16 @@
 
 #ifdef CONFIGURE_FILESYSTEM_JFFS2
 #include <rtems/jffs2.h>
+
+#ifndef CONFIGURE_JFFS2_DELAYED_WRITE_TASK_PRIORITY
+  #define CONFIGURE_JFFS2_DELAYED_WRITE_TASK_PRIORITY \
+    RTEMS_JFFS2_DELAYED_WRITE_TASK_PRIORITY_DEFAULT
+#endif
+
+const rtems_jffs2_config jffs2_config = {
+  CONFIGURE_JFFS2_DELAYED_WRITE_TASK_PRIORITY,
+};
+
 #endif
 
 #ifdef CONFIGURE_FILESYSTEM_NFS

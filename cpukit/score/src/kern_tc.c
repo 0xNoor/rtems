@@ -2141,6 +2141,7 @@ void
 pps_capture(struct pps_state *pps)
 {
 	struct timehands *th;
+	struct timecounter *tc;
 
 	KASSERT(pps != NULL, ("NULL pps pointer in pps_capture"));
 	th = timehands;
@@ -2149,19 +2150,18 @@ pps_capture(struct pps_state *pps)
 #ifdef FFCLOCK
 	pps->capffth = fftimehands;
 #endif
-	pps->capcount = th->th_counter->tc_get_timecount(th->th_counter);
-#if defined(RTEMS_SMP)
-	atomic_thread_fence_acq();
-	if (pps->capgen != th->th_generation)
-		pps->capgen = 0;
-#endif
+	tc = th->th_counter;
+	pps->capcount = tc->tc_get_timecount(tc);
 }
 
 void
 pps_event(struct pps_state *pps, int event)
 {
+	struct timehands *capth;
+	struct timecounter *captc;
+	uint64_t capth_scale;
 	struct bintime bt;
-	struct timespec ts, *tsp, *osp;
+	struct timespec *tsp, *osp;
 	uint32_t tcount, *pcount;
 	int foff;
 	pps_seq_t *pseq;
@@ -2178,13 +2178,21 @@ pps_event(struct pps_state *pps, int event)
 	/* Nothing to do if not currently set to capture this event type. */
 	if ((event & pps->ppsparam.mode) == 0)
 		return;
+
+	/* Make a snapshot of the captured timehand */
+	capth = pps->capth;
+	captc = capth->th_counter;
+	capth_scale = capth->th_scale;
+	tcount = capth->th_offset_count;
+	bt = capth->th_bintime;
+
 	/* If the timecounter was wound up underneath us, bail out. */
+	atomic_thread_fence_acq();
 #if defined(RTEMS_SMP)
-	if (pps->capgen == 0 || pps->capgen !=
+	if (pps->capgen == 0 || pps->capgen != capth->th_generation)
 #else
-	if (pps->capgen !=
+	if (pps->capgen != capth->th_generation)
 #endif
-	    atomic_load_acq_int(&pps->capth->th_generation))
 		return;
 
 	/* Things would be easier with arrays. */
@@ -2218,32 +2226,25 @@ pps_event(struct pps_state *pps, int event)
 #endif
 	}
 
+	*pcount = pps->capcount;
+
 	/*
 	 * If the timecounter changed, we cannot compare the count values, so
 	 * we have to drop the rest of the PPS-stuff until the next event.
 	 */
-	if (pps->ppstc != pps->capth->th_counter) {
-		pps->ppstc = pps->capth->th_counter;
-		*pcount = pps->capcount;
+	if (__predict_false(pps->ppstc != captc)) {
+		pps->ppstc = captc;
 		pps->ppscount[2] = pps->capcount;
 		return;
 	}
 
-	/* Convert the count to a timespec. */
-	tcount = pps->capcount - pps->capth->th_offset_count;
-	tcount &= pps->capth->th_counter->tc_counter_mask;
-	bt = pps->capth->th_bintime;
-	bintime_addx(&bt, pps->capth->th_scale * tcount);
-	bintime2timespec(&bt, &ts);
-
-	/* If the timecounter was wound up underneath us, bail out. */
-	atomic_thread_fence_acq();
-	if (pps->capgen != pps->capth->th_generation)
-		return;
-
-	*pcount = pps->capcount;
 	(*pseq)++;
-	*tsp = ts;
+
+	/* Convert the count to a timespec. */
+	tcount = pps->capcount - tcount;
+	tcount &= captc->tc_counter_mask;
+	bintime_addx(&bt, capth_scale * tcount);
+	bintime2timespec(&bt, tsp);
 
 	if (foff) {
 		timespecadd(tsp, osp, tsp);
@@ -2258,14 +2259,14 @@ pps_event(struct pps_state *pps, int event)
 	bt = pps->capffth->tick_time;
 	ffclock_convert_delta(tcount, pps->capffth->cest.period, &bt);
 	bintime_add(&bt, &pps->capffth->tick_time);
-	bintime2timespec(&bt, &ts);
 	(*pseq_ffc)++;
-	*tsp_ffc = ts;
+	bintime2timespec(&bt, tsp_ffc);
 #endif
 
 #ifdef PPS_SYNC
 	if (fhard) {
-		uint64_t scale;
+		uint64_t delta_nsec;
+		uint64_t freq;
 
 		/*
 		 * Feed the NTP PLL/FLL.
@@ -2274,15 +2275,12 @@ pps_event(struct pps_state *pps, int event)
 		 */
 		tcount = pps->capcount - pps->ppscount[2];
 		pps->ppscount[2] = pps->capcount;
-		tcount &= pps->capth->th_counter->tc_counter_mask;
-		scale = (uint64_t)1 << 63;
-		scale /= pps->capth->th_counter->tc_frequency;
-		scale *= 2;
-		bt.sec = 0;
-		bt.frac = 0;
-		bintime_addx(&bt, scale * tcount);
-		bintime2timespec(&bt, &ts);
-		hardpps(tsp, ts.tv_nsec + 1000000000 * ts.tv_sec);
+		tcount &= captc->tc_counter_mask;
+		delta_nsec = 1000000000;
+		delta_nsec *= tcount;
+		freq = captc->tc_frequency;
+		delta_nsec = (delta_nsec + freq / 2) / freq;
+		hardpps(tsp, (long)delta_nsec);
 	}
 #endif
 
@@ -2497,7 +2495,7 @@ SYSINIT(timecounter, SI_SUB_CLOCKS, SI_ORDER_SECOND, inittimecounter, NULL);
 
 /* Cpu tick handling -------------------------------------------------*/
 
-static int cpu_tick_variable;
+static bool cpu_tick_variable;
 static uint64_t	cpu_tick_frequency;
 
 DPCPU_DEFINE_STATIC(uint64_t, tc_cpu_ticks_base);
@@ -2590,14 +2588,14 @@ cpu_tick_calibrate(int reset)
 }
 
 void
-set_cputicker(cpu_tick_f *func, uint64_t freq, unsigned var)
+set_cputicker(cpu_tick_f *func, uint64_t freq, bool isvariable)
 {
 
 	if (func == NULL) {
 		cpu_ticks = tc_cpu_ticks;
 	} else {
 		cpu_tick_frequency = freq;
-		cpu_tick_variable = var;
+		cpu_tick_variable = isvariable;
 		cpu_ticks = func;
 	}
 }
@@ -2617,20 +2615,14 @@ cpu_tickrate(void)
  * years) and in 64 bits at 4 GHz (146 years), but if we do a multiply
  * before divide conversion (to retain precision) we find that the
  * margin shrinks to 1.5 hours (one millionth of 146y).
- * With a three prong approach we never lose significant bits, no
- * matter what the cputick rate and length of timeinterval is.
  */
 
 uint64_t
 cputick2usec(uint64_t tick)
 {
-
-	if (tick > 18446744073709551LL)		/* floor(2^64 / 1000) */
-		return (tick / (cpu_tickrate() / 1000000LL));
-	else if (tick > 18446744073709LL)	/* floor(2^64 / 1000000) */
-		return ((tick * 1000LL) / (cpu_tickrate() / 1000LL));
-	else
-		return ((tick * 1000000LL) / cpu_tickrate());
+	uint64_t tr;
+	tr = cpu_tickrate();
+	return ((tick / tr) * 1000000ULL) + ((tick % tr) * 1000000ULL) / tr;
 }
 
 cpu_tick_f	*cpu_ticks = tc_cpu_ticks;

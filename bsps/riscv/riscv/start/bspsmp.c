@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 embedded brains GmbH
+ * Copyright (c) 2018 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -36,10 +36,7 @@ void bsp_start_on_secondary_processor(Per_CPU_Control *cpu_self)
 
   cpu_index_self = _Per_CPU_Get_index(cpu_self);
 
-  if (
-    cpu_index_self < rtems_configuration_get_maximum_processors()
-      && _SMP_Should_start_processor(cpu_index_self)
-  ) {
+  if (_SMP_Should_start_processor(cpu_index_self)) {
     set_csr(mie, MIP_MSIP | MIP_MEIP);
     _SMP_Start_multitasking_on_secondary_processor(cpu_self);
   } else {
@@ -49,7 +46,7 @@ void bsp_start_on_secondary_processor(Per_CPU_Control *cpu_self)
 
 uint32_t _CPU_SMP_Initialize(void)
 {
-  return riscv_hart_count - RISCV_BOOT_HARTID;
+  return riscv_hart_count;
 }
 
 bool _CPU_SMP_Start_processor(uint32_t cpu_index)

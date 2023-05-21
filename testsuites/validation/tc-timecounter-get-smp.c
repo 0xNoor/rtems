@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreTimecounterValGetSmp
+ * @ingroup ScoreTimecounterValGetSmp
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -63,10 +63,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseScoreTimecounterValGetSmp \
- *   spec:/score/timecounter/val/get-smp
+ * @defgroup ScoreTimecounterValGetSmp spec:/score/timecounter/val/get-smp
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationTimecounterSmp0
+ * @ingroup TestsuitesValidationTimecounterSmp0
  *
  * @brief Tests directives to get a time value.
  *

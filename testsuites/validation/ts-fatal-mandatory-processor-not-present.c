@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesFatalMandatoryProcessorNotPresent
+ * @ingroup TestsuitesFatalMandatoryProcessorNotPresent
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -58,10 +58,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesFatalMandatoryProcessorNotPresent \
+ * @defgroup TestsuitesFatalMandatoryProcessorNotPresent \
  *   spec:/testsuites/fatal-mandatory-processor-not-present
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This validation test suite contains a test case which triggers a
  *   fatal error during system initialization.
@@ -69,7 +69,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "FatalMandatoryProcessorNotPresent";
+const char rtems_test_name[] = "TestsuitesFatalMandatoryProcessorNotPresent";
 
 #define FATAL_SYSINIT_RUN ScoreSmpValFatalMandatoryProcessorNotPresent_Run
 

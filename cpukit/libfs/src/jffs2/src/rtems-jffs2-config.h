@@ -7,7 +7,7 @@
  */
 
 /*
- * Copyright (C) 2018 embedded brains Gmbh (http://www.embedded-brains.de)
+ * Copyright (C) 2018 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -34,3 +34,4 @@
 #define __ECOS 1
 #define KBUILD_MODNAME "JFFS2"
 #define fallthrough __attribute__((__fallthrough__))
+#define CONFIG_JFFS2_FS_WRITEBUFFER

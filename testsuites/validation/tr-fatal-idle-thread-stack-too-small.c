@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreThreadValFatalIdleThreadStackTooSmall
+ * @ingroup ScoreThreadValFatalIdleThreadStackTooSmall
  */
 
 /*
- * Copyright (C) 2022 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2022 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,10 +59,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseScoreThreadValFatalIdleThreadStackTooSmall \
+ * @defgroup ScoreThreadValFatalIdleThreadStackTooSmall \
  *   spec:/score/thread/val/fatal-idle-thread-stack-too-small
  *
- * @ingroup RTEMSTestSuiteTestsuitesFatalIdleThreadStackTooSmall
+ * @ingroup TestsuitesFatalIdleThreadStackTooSmall
  *
  * @brief Tests a fatal error caused by a too small idle thread stack size.
  *

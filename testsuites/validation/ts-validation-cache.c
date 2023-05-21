@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationCache
+ * @ingroup TestsuitesValidationCache
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,10 +55,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesValidationCache \
- *   spec:/testsuites/validation-cache
+ * @defgroup TestsuitesValidationCache spec:/testsuites/validation-cache
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This validation test suite provides enough resources to run tests for
  *   the directives of the @ref RTEMSAPIClassicCache.
@@ -69,7 +68,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "ValidationCache";
+const char rtems_test_name[] = "TestsuitesValidationCache";
 
 #define CONFIGURE_MAXIMUM_PROCESSORS 4
 

@@ -57,6 +57,7 @@
 #include <rtems/score/sysstate.h>
 #include <bsp.h>
 #include <libcpu/byteorder.h>
+#include <libcpu/io.h>
 
 #define __INSIDE_RTEMS_BSP__
 #define _VME_TSI148_DECLARE_SHOW_ROUTINES
@@ -1104,13 +1105,9 @@ vmeTsi148XlateAddr(
 }
 
 
-/* printk cannot format %llx */
 static void uprintfllx(FILE *f, unsigned long long v)
 {
-	if ( v >= ((unsigned long long)1)<<32 )
-		uprintf(f,"0x%lx%08lx ", (unsigned long)(v>>32), (unsigned long)(v & 0xffffffff));
-	else
-		uprintf(f,"0x%08lx ", (unsigned long)(v & 0xffffffff));
+	uprintf(f,"0x%08llx ", v);
 }
 
 void

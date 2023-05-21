@@ -9,7 +9,7 @@
  */
 
 /*
- * Copyright (c) 2008-2013 embedded brains GmbH.  All rights reserved.
+ * Copyright (C) 2008, 2013 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -69,7 +69,7 @@ static void null_pointer_protection(void)
 
 	PPC_SET_SPECIAL_PURPOSE_REGISTER(FSL_EIS_MAS0, mmu.MAS0.R);
 	__asm__ volatile ("tlbre");
-	mmu.MAS1.R = PPC_SPECIAL_PURPOSE_REGISTER(FSL_EIS_MAS1);
+	PPC_SPECIAL_PURPOSE_REGISTER(FSL_EIS_MAS1, mmu.MAS1.R);
 	mmu.MAS1.B.VALID = 0;
 	PPC_SET_SPECIAL_PURPOSE_REGISTER(FSL_EIS_MAS1, mmu.MAS1.R);
 	__asm__ volatile ("tlbwe");

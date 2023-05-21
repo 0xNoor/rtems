@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsStatusValStatus
+ * @ingroup RtemsStatusValStatus
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021, 2023 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,9 +57,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsStatusValStatus spec:/rtems/status/val/status
+ * @defgroup RtemsStatusValStatus spec:/rtems/status/val/status
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @brief Tests some @ref RTEMSAPIClassicStatus interfaces.
  *
@@ -67,11 +67,15 @@
  *
  * - Validate the status code constants.
  *
- *   - Check that RTEMS_STATUS_CODES_FIRST has the expected value and is a
+ *   - Assert that RTEMS_STATUS_CODES_FIRST has the expected value and is a
  *     constant expression.
  *
- *   - Check that RTEMS_STATUS_CODES_LAST has the expected value and is a
+ *   - Check that RTEMS_STATUS_CODES_FIRST has the expected value.
+ *
+ *   - Assert that RTEMS_STATUS_CODES_LAST has the expected value and is a
  *     constant expression.
+ *
+ *   - Check that RTEMS_STATUS_CODES_LAST has the expected value.
  *
  * @{
  */
@@ -84,16 +88,26 @@ static void RtemsStatusValStatus_Action_0( void )
   /* Nothing to do */
 
   /*
-   * Check that RTEMS_STATUS_CODES_FIRST has the expected value and is a
+   * Assert that RTEMS_STATUS_CODES_FIRST has the expected value and is a
    * constant expression.
    */
   RTEMS_STATIC_ASSERT( RTEMS_STATUS_CODES_FIRST == 0, FIRST );
 
   /*
-   * Check that RTEMS_STATUS_CODES_LAST has the expected value and is a
+   * Check that RTEMS_STATUS_CODES_FIRST has the expected value.
+   */
+  T_eq_int( RTEMS_STATUS_CODES_FIRST, 0 );
+
+  /*
+   * Assert that RTEMS_STATUS_CODES_LAST has the expected value and is a
    * constant expression.
    */
   RTEMS_STATIC_ASSERT( RTEMS_STATUS_CODES_LAST == 29, LAST );
+
+  /*
+   * Check that RTEMS_STATUS_CODES_LAST has the expected value.
+   */
+  T_eq_int( RTEMS_STATUS_CODES_LAST, 29 );
 }
 
 /**

@@ -2,7 +2,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
 build-type: group
 cflags: []
 copyrights:
-- Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+- Copyright (C) 2020 embedded brains GmbH & Co. KG
 cppflags: []
 cxxflags: []
 enabled-by: true
@@ -51,9 +51,13 @@ links:
 - role: build-dependency
   uid: optfrdme310arty
 - role: build-dependency
+  uid: optkendrytek210
+- role: build-dependency
   uid: opthtif
 - role: build-dependency
   uid: optmpfs
+- role: build-dependency
+  uid: optsifiveuart
 - role: build-dependency
   uid: optns16550max
 - role: build-dependency

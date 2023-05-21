@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationSmpOneCpu0
+ * @ingroup TestsuitesValidationSmpOneCpu0
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -55,10 +55,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestSuiteTestsuitesValidationSmpOneCpu0 \
+ * @defgroup TestsuitesValidationSmpOneCpu0 \
  *   spec:/testsuites/validation-smp-one-cpu-0
  *
- * @ingroup RTEMSTestSuites
+ * @ingroup RTEMSTestSuitesValidation
  *
  * @brief This general purpose validation test suite provides enough resources
  *   to run basic tests for all specified managers and functions in a
@@ -67,7 +67,7 @@
  * @{
  */
 
-const char rtems_test_name[] = "ValidationSmpOneCpu0";
+const char rtems_test_name[] = "TestsuitesValidationSmpOneCpu0";
 
 #define CONFIGURE_MAXIMUM_PROCESSORS 1
 

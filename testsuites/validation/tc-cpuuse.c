@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsCpuuseValCpuuse
+ * @ingroup RtemsCpuuseValCpuuse
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -60,9 +60,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsCpuuseValCpuuse spec:/rtems/cpuuse/val/cpuuse
+ * @defgroup RtemsCpuuseValCpuuse spec:/rtems/cpuuse/val/cpuuse
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @brief Tests the CPU usage reporting and reset.
  *

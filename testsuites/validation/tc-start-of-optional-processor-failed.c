@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreSmpValStartOfOptionalProcessorFailed
+ * @ingroup ScoreSmpValStartOfOptionalProcessorFailed
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,10 +57,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseScoreSmpValStartOfOptionalProcessorFailed \
+ * @defgroup ScoreSmpValStartOfOptionalProcessorFailed \
  *   spec:/score/smp/val/start-of-optional-processor-failed
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationSmpOnly2
+ * @ingroup TestsuitesValidationSmpOnly2
  *
  * @brief Tests the state of an optional processor which failed to start.
  *

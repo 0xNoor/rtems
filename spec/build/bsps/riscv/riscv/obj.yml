@@ -2,7 +2,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0 OR BSD-2-Clause
 build-type: objects
 cflags: []
 copyrights:
-- Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+- Copyright (C) 2020 embedded brains GmbH & Co. KG
 cppflags: []
 cxxflags: []
 enabled-by: true
@@ -16,6 +16,7 @@ install:
   - bsps/riscv/riscv/include/bsp/fe310-uart.h
   - bsps/riscv/riscv/include/bsp/irq.h
   - bsps/riscv/riscv/include/bsp/riscv.h
+  - bsps/riscv/riscv/include/bsp/k210.h
 - destination: ${BSP_INCLUDEDIR}/dev/serial
   source:
   - bsps/riscv/riscv/include/dev/serial/htif.h

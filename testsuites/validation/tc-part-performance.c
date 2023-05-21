@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsPartValPerf
+ * @ingroup RtemsPartValPerf
  */
 
 /*
- * Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -58,9 +58,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsPartValPerf spec:/rtems/part/val/perf
+ * @defgroup RtemsPartValPerf spec:/rtems/part/val/perf
  *
- * @ingroup RTEMSTestSuiteTestsuitesPerformanceNoClock0
+ * @ingroup TestsuitesPerformanceNoClock0
  *
  * @brief This test case provides a context to run @ref RTEMSAPIClassicPart
  *   performance tests.
@@ -213,6 +213,12 @@ static T_fixture RtemsPartValPerf_Fixture = {
 };
 
 /**
+ * @defgroup RtemsPartReqPerfGetBuffer spec:/rtems/part/req/perf-get-buffer
+ *
+ * @{
+ */
+
+/**
  * @brief Get a buffer.
  */
 static void RtemsPartReqPerfGetBuffer_Body( RtemsPartValPerf_Context *ctx )
@@ -262,6 +268,15 @@ static bool RtemsPartReqPerfGetBuffer_Teardown_Wrap(
   ctx = arg;
   return RtemsPartReqPerfGetBuffer_Teardown( ctx, delta, tic, toc, retry );
 }
+
+/** @} */
+
+/**
+ * @defgroup RtemsPartReqPerfGetNoBuffer \
+ *   spec:/rtems/part/req/perf-get-no-buffer
+ *
+ * @{
+ */
 
 /**
  * @brief Get the buffer.
@@ -335,6 +350,15 @@ static void RtemsPartReqPerfGetNoBuffer_Cleanup(
   T_rsc_success( sc );
 }
 
+/** @} */
+
+/**
+ * @defgroup RtemsPartReqPerfReturnBuffer \
+ *   spec:/rtems/part/req/perf-return-buffer
+ *
+ * @{
+ */
+
 /**
  * @brief Get the buffer.
  */
@@ -399,6 +423,8 @@ static bool RtemsPartReqPerfReturnBuffer_Teardown_Wrap(
   ctx = arg;
   return RtemsPartReqPerfReturnBuffer_Teardown( ctx, delta, tic, toc, retry );
 }
+
+/** @} */
 
 /**
  * @fn void T_case_body_RtemsPartValPerf( void )

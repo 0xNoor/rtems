@@ -3,13 +3,13 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreInterrValTerminate
+ * @ingroup ScoreInterrValTerminate
  *
  * @brief This header file provides functions used by corresponding test suite.
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions

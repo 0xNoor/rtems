@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsTaskReqConstruct
+ * @ingroup RtemsTaskReqConstruct
  */
 
 /*
- * Copyright (C) 2020, 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2020, 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -64,10 +64,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsTaskReqConstruct spec:/rtems/task/req/construct
+ * @defgroup RtemsTaskReqConstruct spec:/rtems/task/req/construct
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidation1
- * @ingroup RTEMSTestSuiteTestsuitesValidationOneCpu1
+ * @ingroup TestsuitesValidation1
+ * @ingroup TestsuitesValidationOneCpu1
  *
  * @{
  */

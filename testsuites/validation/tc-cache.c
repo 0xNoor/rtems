@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsCacheValCache
+ * @ingroup RtemsCacheValCache
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,9 +57,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsCacheValCache spec:/rtems/cache/val/cache
+ * @defgroup RtemsCacheValCache spec:/rtems/cache/val/cache
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationCache
+ * @ingroup TestsuitesValidationCache
  *
  * @brief Tests some @ref RTEMSAPIClassicCache directives.
  *

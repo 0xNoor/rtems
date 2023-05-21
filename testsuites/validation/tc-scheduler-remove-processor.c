@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseRtemsSchedulerReqRemoveProcessor
+ * @ingroup RtemsSchedulerReqRemoveProcessor
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -63,10 +63,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseRtemsSchedulerReqRemoveProcessor \
+ * @defgroup RtemsSchedulerReqRemoveProcessor \
  *   spec:/rtems/scheduler/req/remove-processor
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationNoClock0
+ * @ingroup TestsuitesValidationNoClock0
  *
  * @{
  */
@@ -377,16 +377,22 @@ static void DoRemoveProcessor( Context *ctx )
 }
 
 #if defined(RTEMS_SMP)
-typedef enum {
-  EVENT_SYNC_RUNNER = RTEMS_EVENT_0,
-  EVENT_OBTAIN = RTEMS_EVENT_1,
-  EVENT_RELEASE = RTEMS_EVENT_2,
-  EVENT_STICKY_OBTAIN = RTEMS_EVENT_3,
-  EVENT_STICKY_RELEASE = RTEMS_EVENT_4,
-  EVENT_RESTART = RTEMS_EVENT_5,
-  EVENT_BUSY = RTEMS_EVENT_6,
-  EVENT_SYNC_RUNNER_LATE = RTEMS_EVENT_7
-} Event;
+
+#define EVENT_SYNC_RUNNER RTEMS_EVENT_0
+
+#define EVENT_OBTAIN RTEMS_EVENT_1
+
+#define EVENT_RELEASE RTEMS_EVENT_2
+
+#define EVENT_STICKY_OBTAIN RTEMS_EVENT_3
+
+#define EVENT_STICKY_RELEASE RTEMS_EVENT_4
+
+#define EVENT_RESTART RTEMS_EVENT_5
+
+#define EVENT_BUSY RTEMS_EVENT_6
+
+#define EVENT_SYNC_RUNNER_LATE RTEMS_EVENT_7
 
 static void Barriers( void *arg )
 {
@@ -413,7 +419,11 @@ static void RequestISR( void *arg )
   CallWithinISRSubmit( &ctx->request );
 }
 
-static void SendAndSync( Context *ctx, WorkerIndex worker, Event event )
+static void SendAndSync(
+  Context        *ctx,
+  WorkerIndex     worker,
+  rtems_event_set event
+)
 {
   SendEvents( ctx->worker_id[ worker ], EVENT_SYNC_RUNNER | event );
   ReceiveAllEvents( EVENT_SYNC_RUNNER );

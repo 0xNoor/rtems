@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreTimecounterValInstall
+ * @ingroup ScoreTimecounterValInstall
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -62,10 +62,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseScoreTimecounterValInstall \
- *   spec:/score/timecounter/val/install
+ * @defgroup ScoreTimecounterValInstall spec:/score/timecounter/val/install
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationTimecounter0
+ * @ingroup TestsuitesValidationTimecounter0
  *
  * @brief Tests timecounter installation related functions and directives of
  *   the Clock Manager.

@@ -5,11 +5,12 @@ actions:
 - env-append: null
 build-type: option
 copyrights:
-- Copyright (C) 2020 embedded brains GmbH (http://www.embedded-brains.de)
+- Copyright (C) 2020 embedded brains GmbH & Co. KG
 default:
 - enabled-by:
   - riscv/mpfs64imafdc
   - riscv/rv64imafdc
+  - riscv/kendrytek210
   value:
   - -march=rv64imafdc
   - -mabi=lp64d

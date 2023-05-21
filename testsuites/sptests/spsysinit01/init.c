@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2020 embedded brains GmbH.  All rights reserved.
+ * Copyright (C) 2015, 2020 embedded brains GmbH & Co. KG
  *
  * The license and distribution terms for this file may be
  * found in the file LICENSE in this distribution or at
@@ -908,7 +908,7 @@ static void do_posix_sem_open(void)
   sem_t *sem;
   int rv;
 
-  sem = sem_open("sem", O_CREAT | O_RDWR, S_IRWXU | S_IRWXG | S_IRWXO);
+  sem = sem_open("sem", O_CREAT | O_RDWR, S_IRWXU | S_IRWXG | S_IRWXO, 0);
   rtems_test_assert(sem != SEM_FAILED);
 
   rv = sem_close(sem);

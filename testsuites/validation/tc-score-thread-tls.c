@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreThreadValTls
+ * @ingroup ScoreThreadValTls
  */
 
 /*
- * Copyright (C) 2021 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2021 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -59,10 +59,10 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseScoreThreadValTls spec:/score/thread/val/tls
+ * @defgroup ScoreThreadValTls spec:/score/thread/val/tls
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationTls0
- * @ingroup RTEMSTestSuiteTestsuitesValidationTls1
+ * @ingroup TestsuitesValidationTls0
+ * @ingroup TestsuitesValidationTls1
  *
  * @brief Tests properties of thread-local objects.
  *

@@ -3,11 +3,11 @@
 /**
  * @file
  *
- * @ingroup RTEMSTestCaseScoreThreadValTlsMaxZero
+ * @ingroup ScoreThreadValTlsMaxZero
  */
 
 /*
- * Copyright (C) 2022 embedded brains GmbH (http://www.embedded-brains.de)
+ * Copyright (C) 2022 embedded brains GmbH & Co. KG
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -57,10 +57,9 @@
 #include <rtems/test.h>
 
 /**
- * @defgroup RTEMSTestCaseScoreThreadValTlsMaxZero \
- *   spec:/score/thread/val/tls-max-zero
+ * @defgroup ScoreThreadValTlsMaxZero spec:/score/thread/val/tls-max-zero
  *
- * @ingroup RTEMSTestSuiteTestsuitesValidationTls1
+ * @ingroup TestsuitesValidationTls1
  *
  * @brief Tests properties of thread-local objects.
  *
