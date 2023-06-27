@@ -63,6 +63,8 @@ extern "C" {
 #endif /* __cplusplus */
 
 #define BSP_FDT_IS_SUPPORTED
+extern unsigned int rpi4b_dtb_len;
+extern unsigned char rpi4b_dtb[];
 
 #define BSP_ARM_GIC_CPUIF_BASE 0xFF842000
 #define BSP_ARM_GIC_DIST_BASE 0xFF841000
