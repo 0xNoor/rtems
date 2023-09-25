@@ -42,7 +42,7 @@
  * @{
  */
 
-#define BCM2711_REG(x)           (*(volatile uint64_t *)(x))
+#define BCM2711_REG(x)           (*(volatile uint32_t *)(x))
 #define BCM2711_BIT(n)           (1 << (n))
 
 /** @} */

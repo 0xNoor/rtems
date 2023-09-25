@@ -66,18 +66,18 @@ raspberrypi_4_mmu_config_table[] = {
 /*
  * Make weak and let the user override.
  */
-BSP_START_TEXT_SECTION void
-raspberrypi_4_setup_mmu_and_cache( void ) __attribute__ ((weak));
 
-BSP_START_TEXT_SECTION void
-raspberrypi_4_setup_mmu_and_cache( void )
+
+BSP_START_TEXT_SECTION void rpi_setup_secondary_cpu_mmu_and_cache( void )
+__attribute__ ( ( weak ) );
+
+BSP_START_TEXT_SECTION void rpi_setup_secondary_cpu_mmu_and_cache( void )
 {
+  /* Perform basic MMU setup */
   aarch64_mmu_setup();
 
-  aarch64_mmu_setup_translation_table(
-    &raspberrypi_4_mmu_config_table[ 0 ],
-    RTEMS_ARRAY_SIZE( raspberrypi_4_mmu_config_table )
-  );
+  /* Use the existing root page table already configured by CPU0 */
+  _AArch64_Write_ttbr0_el1( (uintptr_t) bsp_translation_table_base );
 
   aarch64_mmu_enable();
 }

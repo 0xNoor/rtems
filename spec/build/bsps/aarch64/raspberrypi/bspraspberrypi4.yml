@@ -20,6 +20,8 @@ install:
   - bsps/aarch64/raspberrypi/include/bsp/raspberrypi.h
 links:
 - role: build-dependency
+  uid: objsmp
+- role: build-dependency
   uid: ../grp
 - role: build-dependency
   uid: ../start
@@ -45,6 +47,7 @@ links:
   uid: ../../obj
 - role: build-dependency
   uid: ../../objirq
+
 source:
 - bsps/aarch64/raspberrypi/console/console.c
 - bsps/aarch64/raspberrypi/start/bspstart.c
